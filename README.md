@@ -10,7 +10,7 @@ This repository is based on a Fitness application written in Java.
 
 
 ### **Installation**
-Maven and JDK version 8 are required for this.
+Maven and JDK version 11 are required for this.
 First install and compile the project. 
 ```bash
 $ mvn clean install
@@ -58,22 +58,26 @@ JavaFit
 │   LICENSE    
 │   pom.xml
 └───src/main/java
-│   │   file011.txt
-│   │   file012.txt
+│   │   
+│   │   
 │   │
 │   └───com.javafit.View
 │   │   │   LoginView.java
 │   │   │   Register.java
-│   │   └── RegistrationView.java
+│   │   |   RegistrationView.java
+|   |   |   NewPassView.java
+|   |   └── ResetPassView.java
 │   |
 |   └─── com.javafit.Model
 |   |   |   Person.java
 |   |   └── User.java
 |   |  
 |   └───com.javafit.Controller
-|   |   LoginController.java
-└───└── NewUserController.java
-    
+|       |   LoginController.java
+|       |   NewUserController.java
+|       |   ResetController.java
+|       └── SendResetController.java
+└───────────────────────────────────   
 
 ```
 
@@ -81,6 +85,7 @@ JavaFit
 ### **Features**
 
 * GUI Interface
+* Account Login
 * Weight Tracking
 * Calorie Trackig
 * Exercises
@@ -105,6 +110,7 @@ JavaFit
         - [ ] Forgot Password
     - [ ] Routines View
     - [ ] Dashboard View
+    - [x] Password Reset View
 - [ ] Backend
     - [ ] DB
         - [x] MongoDB external DB setup
@@ -113,6 +119,6 @@ JavaFit
         - [ ] routine databse
         - [ ] foods databse
     - [x] User
-        - [x]Password Hashing
+        - [x] Password Hashing
         - [x] JSON
-    
+    - [x] Reset password functionality
