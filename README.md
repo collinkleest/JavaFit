@@ -45,6 +45,24 @@ All dependencies are placed in the `pom.xml` file. When the Maven project is bui
 </dependency>    
 ```
 
+*Bootstrap Fx*
+```xml
+<dependency>
+        	<groupId>org.kordamp.bootstrapfx</groupId>
+        	<artifactId>bootstrapfx-core</artifactId>
+        	<version>0.2.4</version>
+</dependency>
+```
+
+*JFOENIX Design Framework*
+```xml
+<dependency>
+    		<groupId>com.jfoenix</groupId>
+    		<artifactId>jfoenix</artifactId>
+    		<version>9.0.8</version>
+</dependency>
+```
+
 *JSON-Simple*
 ```xml
 <dependency>

@@ -38,19 +38,22 @@ public class NewPassView {
 		gP.setHgap(10);
 		gP.setVgap(10);
 		gP.setPadding(new Insets(25, 25, 25, 25));
-		this.resetScene = new Scene(gP, 500, 500);
+		this.resetScene = new Scene(gP, 500, 300);
 		
 		Text scenetitle = new Text("Reset Password");
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		scenetitle.getStyleClass().setAll("strong","h1");
 		gP.add(scenetitle, 0, 0, 2, 1);
 		
 		Label passWordLabel = new Label("Password:");
+		passWordLabel.getStyleClass().setAll("strong","lead");
 		gP.add(passWordLabel, 0, 1);
 		
 		PasswordField pwField = new  PasswordField();
 		gP.add(pwField, 1, 1);
 		
 		Label passWordConfirmLabel = new Label("Confirm Password:");
+		passWordConfirmLabel.getStyleClass().setAll("strong","lead");
 		gP.add(passWordConfirmLabel, 0, 2);
 		
 		PasswordField pwCField = new  PasswordField();
@@ -59,7 +62,9 @@ public class NewPassView {
 		Button resetBtn = new Button("Reset Password");
 		resetBtn.setPrefHeight(40);
 		resetBtn.setDefaultButton(true);
-		resetBtn.setPrefWidth(100);
+		resetBtn.setPrefWidth(200);
+		resetBtn.setAlignment(Pos.CENTER);
+		resetBtn.getStyleClass().setAll("strong","lead", "btn-info", "btn-sm");
 		gP.add(resetBtn, 0, 3);
 		
 		resetBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -99,6 +104,7 @@ public class NewPassView {
 	    	}
 	    });
 	    
+		 resetScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 		
 		this.start();
 	}
