@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -51,7 +52,7 @@ public class LoginView {
 		Label passWordLabel = new Label("Password: ");
 		gP.add(passWordLabel, 0, 2);
 
-		TextField passWordInput = new TextField("password");
+		PasswordField passWordInput = new PasswordField();
 		gP.add(passWordInput, 1, 2);
 		
 		
@@ -66,6 +67,12 @@ public class LoginView {
 		loginButton.setDefaultButton(true);
 		loginButton.setPrefWidth(100);
 	    gP.add(loginButton, 1, 3);
+	    
+	    Button resetPasswordBtn = new Button("Reset Password");
+	    resetPasswordBtn.setPrefHeight(40);
+	    resetPasswordBtn.setDefaultButton(true);
+	    resetPasswordBtn.setPrefWidth(200);
+	    gP.add(resetPasswordBtn, 0, 4);
 		
 	    registerButton.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
@@ -77,6 +84,15 @@ public class LoginView {
 	    		RegistrationView rV = new RegistrationView();
 	    		newStage.setScene(rV.getScene());
 	    		newStage.show();
+	    	}
+	    });
+	    
+	    resetPasswordBtn.setOnAction(new EventHandler<ActionEvent>() {
+	    	@Override
+	    	public void handle(ActionEvent event) {
+	    		Stage stage = (Stage) loginButton.getScene().getWindow();
+	    		stage.close();
+	    		ResetPassView rpV = new ResetPassView();
 	    	}
 	    });
 	    
