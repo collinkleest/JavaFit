@@ -17,9 +17,9 @@
         
         <!-- JAVA FX DEPENDENCY -->
         <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>14</version>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-controls</artifactId>
+                <version>14</version>
         </dependency>
         
         <!-- JSON DEPENDENCY -->
