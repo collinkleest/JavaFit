@@ -1,5 +1,7 @@
 package com.javafit.View;
 
+import org.kordamp.bootstrapfx.scene.layout.Panel;
+
 import com.javafit.Controller.LoginController;
 
 import javafx.event.ActionEvent;
@@ -37,20 +39,23 @@ public class LoginView {
 		gP.setHgap(10);
 		gP.setVgap(10);
 		gP.setPadding(new Insets(25, 25, 25, 25));
-		this.loginScene = new Scene(gP, 500, 500);
+		this.loginScene = new Scene(gP, 500, 300);
 		
 		
 		Text scenetitle = new Text("Login to JavaFit!");
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		scenetitle.getStyleClass().setAll("strong","h1");
 		gP.add(scenetitle, 0, 0, 2, 1);
 		
 		Label userNameLabel = new Label("Username:");
+		userNameLabel.getStyleClass().setAll("strong","lead");
 		gP.add(userNameLabel, 0, 1);
 		
 		TextField userNameInput = new TextField("username");
 		gP.add(userNameInput, 1, 1);
 		
 		Label passWordLabel = new Label("Password: ");
+		passWordLabel.getStyleClass().setAll("strong","lead");
 		gP.add(passWordLabel, 0, 2);
 
 		PasswordField passWordInput = new PasswordField();
@@ -61,19 +66,27 @@ public class LoginView {
 		registerButton.setPrefHeight(40);
 	    registerButton.setDefaultButton(true);
 	    registerButton.setPrefWidth(100);
+	    registerButton.setAlignment(Pos.CENTER);
+	    registerButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
 	    gP.add(registerButton, 0, 3);
 		
 		Button loginButton = new Button("Login");
 		loginButton.setPrefHeight(40);
+		loginButton.setAlignment(Pos.CENTER);
 		loginButton.setDefaultButton(true);
 		loginButton.setPrefWidth(100);
+		loginButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
 	    gP.add(loginButton, 1, 3);
 	    
 	    Button resetPasswordBtn = new Button("Reset Password");
 	    resetPasswordBtn.setPrefHeight(40);
 	    resetPasswordBtn.setDefaultButton(true);
-	    resetPasswordBtn.setPrefWidth(200);
-	    gP.add(resetPasswordBtn, 0, 4);
+	    resetPasswordBtn.setPrefWidth(400);
+	    resetPasswordBtn.setAlignment(Pos.CENTER);
+	    resetPasswordBtn.getStyleClass().setAll("btn-sm", "btn-info", "lead");
+	    gP.add(resetPasswordBtn, 0, 4, 2, 1);
+	    
+	   
 		
 	    registerButton.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
@@ -136,6 +149,8 @@ public class LoginView {
 	    		
 	    	}
 	    });
+	    
+	    loginScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 	    
 		
 		this.start();
