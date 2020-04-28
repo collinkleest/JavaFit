@@ -9,9 +9,22 @@ This repository is based on a Fitness application written in Java.
 5. [Tasks](#Tasks)
 
 
-### **Installation**
-Maven and JDK version 11 are required for this.
-First install and compile the project. 
+### Compatibility
+**Requirements**
+* *Maven 3.6.3*
+* *JDK 14*
+
+
+### **Installation** 
+Clone the repository
+```bash
+$ git clone https://github.com/collinkleest/JavaFit.git
+```
+Change directory into JavaFit
+```bash
+$ cd JavaFit/
+```
+Install dependencies with maven.
 ```bash
 $ mvn clean install
 ```
@@ -19,7 +32,6 @@ Now run the applicaiton
 ```bash
 $ mvn clean javafx:run
 ```
-
 
 ### **Dependencies**
 All dependencies are placed in the `pom.xml` file. When the Maven project is build dependencies should compile and be added into the project, therefore allowing it to run.
