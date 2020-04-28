@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -117,10 +118,21 @@ public class LoginView {
 	    			return;
 	    		}
 	    		else {
-	    			showAlert(Alert.AlertType.CONFIRMATION, gP.getScene().getWindow(), 
-	    		    	    "Login Successful!", "Welcome " + userNameInput.getText());
+	    			
+	    			Alert alert = new Alert(AlertType.CONFIRMATION);
+	    			alert.setTitle("Successful Login");
+	    			alert.setHeaderText("Login Successful!");
+	    			alert.setContentText("Welcome "+userNameInput.getText().strip()+" click ok to continue");
+	    			alert.initOwner(gP.getScene().getWindow());
+	    			alert.showAndWait();
+	    			lC.closeMongoConnection();
+	    			Stage stage = (Stage) loginButton.getScene().getWindow();
+		    		stage.close();
+		    		
+		    		
+		    		
 	    		}
-	    		lC.closeMongoConnection();
+	    		
 	    		
 	    	}
 	    });
