@@ -1,5 +1,6 @@
 package com.javafit.View;
 
+import com.javafit.Controller.BMICalculatorController;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -31,6 +32,7 @@ public class BMICalculatorView {
     private Document userObj;
     private String weightString;
     private String heightString;
+    private BMICalculatorController bmiController;
 
     /**
      * Starts the stage
@@ -47,6 +49,7 @@ public class BMICalculatorView {
      */
     public BMICalculatorView() {
         //Initializations;
+        bmiController = new BMICalculatorController(this);
         GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
@@ -94,7 +97,10 @@ public class BMICalculatorView {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Your BMI");
             alert.setHeaderText("Your BMI is:");
-            alert.setContentText("(bmi will go here)");
+            
+            double calculatedBMI = bmiController.calculateBMI(heightDisplay.getText(), weightDisplay.getText());
+            
+            alert.setContentText(calculatedBMI + "");
             alert.initOwner(gP.getScene().getWindow());
             alert.show();
         });
