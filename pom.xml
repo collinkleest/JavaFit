@@ -20,6 +20,14 @@
 	</repositories>
     <dependencies>
         
+        <!-- JAVA FXML DEPENDENCY -->
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
+		<dependency>
+    		<groupId>org.openjfx</groupId>
+    		<artifactId>javafx-fxml</artifactId>
+    		<version>15-ea+4</version>
+		</dependency>
+        
         
         <!-- JAVA FX DEPENDENCY -->
         <dependency>
@@ -95,6 +103,18 @@
                 </executions>
             </plugin>
         </plugins>
+     	<resources>
+        	<resource>
+            	<directory>
+            		src/main/resources
+            	</directory> 
+            	<includes> 
+            		<include>
+            			**/*.fxml
+            		</include> 
+            	</includes>
+        	</resource>
+    	</resources>
     </build>
 
 </project>

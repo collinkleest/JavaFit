@@ -42,3 +42,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+#IntelliJ
+*.idea
+*.iml
