@@ -8,6 +8,7 @@ import org.bson.Document;
 import com.javafit.View.BMICalculatorView;
 import com.javafit.View.RegistrationView;
 import com.javafit.View.ReportView;
+import com.javafit.View.RoutineView;
 import com.jfoenix.controls.JFXButton;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -79,22 +80,20 @@ public class DashController {
         routineBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
-
-            //ReportView reportView = new ReportView();
+            RoutineView routineView = new RoutineView();
         });
 
         JFXButton reportBtn = (JFXButton) this.dashScene.lookup("#reportbtn");
-        routineBtn.setOnAction((ActionEvent event) -> {
+        reportBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
 
             ReportView reportView = new ReportView();
         });
         JFXButton bmiBtn = (JFXButton) this.dashScene.lookup("#bmibtn");
-        routineBtn.setOnAction((ActionEvent event) -> {
+        bmiBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
-
             BMICalculatorView bmiView = new BMICalculatorView();
         });
 
