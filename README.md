@@ -45,6 +45,16 @@ All dependencies are placed in the `pom.xml` file. When the Maven project is bui
 </dependency>    
 ```
 
+*JavaFXML*
+```xml
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-fxml</artifactId>
+    <version>15-ea+4</version>
+</dependency>
+```
+
+
 *Bootstrap Fx*
 ```xml
 <dependency>
@@ -127,17 +137,17 @@ JavaFit
         - [x] Fields
         - [x] Checkboxes
         - [x] Accept terms and conditions
-        - [ ] Improve user experience
-        - [ ] Improve astetics
-            - [ ] Grid Layout, component placement
-            - [ ] Colors, UI overall looks better
+        - [x] Improve user experience
+        - [x] Improve astetics
+            - [x] Grid Layout, component placement
+            - [x] Colors, UI overall looks better
     - [x] Login View
         - [x] Fields
         - [x] Login, Create Account button
-        - [ ] Improve user experience
-        - [ ] Improve astetics
-            - [ ] Colors, UI overall looks better
-        - [ ] Forgot Password
+        - [x] Improve user experience
+        - [x] Improve astetics
+            - [x] Colors, UI overall looks better
+        - [x] Forgot Password
     - [ ] Routines View
     - [ ] Dashboard View
     - [x] Password Reset View
