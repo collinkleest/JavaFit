@@ -124,7 +124,10 @@ public class DashboardView {
         openReport.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(openReport, 2, 6);
         openReport.setOnAction((ActionEvent event) -> {
-            System.out.println("I do nothing");
+            Stage stage = (Stage) openReport.getScene().getWindow();
+            stage.close();
+            
+            ReportView reportView = new ReportView();
         });
 
         this.scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
