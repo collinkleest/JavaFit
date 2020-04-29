@@ -1,7 +1,6 @@
 package com.javafit.View;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -100,7 +99,10 @@ public class DashboardView {
         openBMICalc.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(openBMICalc, 0, 6);
         openBMICalc.setOnAction((ActionEvent event) -> {
-            System.out.println("I do nothing");
+            Stage stage = (Stage) openBMICalc.getScene().getWindow();
+            stage.close();
+            
+            BMICalculatorView bmiCalcView = new BMICalculatorView();
         });
 
         Button openRoutines = new Button("Open Routine Manager");
