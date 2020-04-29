@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,7 +9,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="658.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutY="582.0" prefHeight="76.0" prefWidth="1100.0" style="-fx-background-color: #388087;" />
+      <AnchorPane layoutY="582.0" prefHeight="76.0" prefWidth="1100.0" style="-fx-background-color: #388087;">
+         <children>
+            <JFXButton id="routinebtn" layoutX="151.0" layoutY="18.0" prefHeight="41.0" prefWidth="186.0" style="-fx-background-color: #badfe7; -fx-border-style: RAISED;" text="Routine Manager" />
+            <JFXButton id="reportbtn" layoutX="451.0" layoutY="18.0" prefHeight="41.0" prefWidth="186.0" style="-fx-background-color: #badfe7; -fx-border-style: RAISED;" text="Report" />
+            <JFXButton id="bmibtn" layoutX="745.0" layoutY="18.0" prefHeight="41.0" prefWidth="186.0" style="-fx-background-color: #badfe7; -fx-border-style: RAISED;" text="BMI Calculator" />
+         </children></AnchorPane>
       <AnchorPane prefHeight="85.0" prefWidth="1100.0" style="-fx-background-color: #388087;">
          <children>
             <Label layoutX="325.0" layoutY="17.0" text="Welcome to JavaFit!" textFill="WHITE">
