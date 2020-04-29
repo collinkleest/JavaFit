@@ -1,5 +1,8 @@
 package com.javafit.View;
 
+import java.io.IOException;
+
+import com.javafit.Controller.DashController;
 import com.javafit.Controller.LoginController;
 
 import javafx.event.ActionEvent;
@@ -126,7 +129,14 @@ public class LoginView {
                 Stage stage = (Stage) loginButton.getScene().getWindow();
                 stage.close();
                 
-                DashboardView dashboardView = new DashboardView();
+                try {
+					DashController dashC = new DashController(userNameInput.getText());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                
+                //DashboardView dashboardView = new DashboardView();
                 
             }
         });

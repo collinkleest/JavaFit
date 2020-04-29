@@ -2,14 +2,19 @@ package com.javafit.View;
 
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
+import com.javafit.Controller.DashController;
 import com.javafit.Controller.NewUserController;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -148,6 +153,9 @@ public class RegistrationView {
         submitButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(submitButton, 1, 11);
 
+       
+        
+        
         loginButton.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
@@ -251,6 +259,9 @@ public class RegistrationView {
 
     }
 
+    
+    
+    
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

@@ -28,6 +28,10 @@ public class User extends Person {
 		this.userName = uName;
 		this.passWord = pWord;
 		this.gainMuscle = muscle;
+		this.gainStrength = strength;
+		this.loseWeight = loseWeight;
+		this.home = home;
+		this.gym = gym;
 	}
 
 	public String getUserName() {
