@@ -24,6 +24,7 @@ import com.javafit.Controller.CustomRoutineController;
 import com.javafit.Controller.DashController;
 import com.javafit.View.RegistrationView;
 import com.jfoenix.controls.JFXButton;
+import com.mongodb.DBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -53,34 +54,33 @@ public class RoutineView {
 		FindIterable<Document> iterable = routinesCollection.find();
 		MongoCursor<Document> cursor = iterable.iterator();
 		GridPane gP = new GridPane();
-				
 		int rowIndex = 0;
+		
 		
 		try {
 			while(cursor.hasNext()) {
-				while(cursor.hasNext()) {
-				System.out.println(cursor.tryNext());
-				AnchorPane pane = this.getaC();
-				ArrayList<Label> labelList = this.getLabels(pane);
-				for (int i = 0; i < labelList.size(); i++) {
-					if (i == 0)
-							labelList.get(i).setText((String) cursor.tryNext().get("name"));
-					else if(i == 1)
-						labelList.get(i).setText((String) cursor.tryNext().get("userName"));
-					else if(i==2)
-						labelList.get(i).setText((String) cursor.tryNext().get("reps"));
-					else if(i==3)
-						labelList.get(i).setText((String) cursor.tryNext().get("muscleGroup"));
-					else if(i==4)
-						labelList.get(i).setText("gain muscle");
-					else if(i==5)
-						labelList.get(i).setText((String) cursor.tryNext().get("location"));
-				}
 				
 				
-				gP.add(pane, 0, rowIndex);
+				Document obj = cursor.tryNext();
+				AnchorPane newPane = FXMLLoader.load(RoutineView.class.getResource("/routinePane.fxml"));
+				
+				Label routineName = (Label) newPane.lookup("#routineName");
+				Label userNameLabel = (Label) newPane.lookup("#userName");
+				Label reps = (Label) newPane.lookup("#reps");
+				Label mGroup = (Label) newPane.lookup("#mGroup");
+				Label objs = (Label) newPane.lookup("#objs");
+				Label location = (Label) newPane.lookup("#location");
+				
+				System.out.println("" + obj.get("name"));
+				routineName.setText((String) obj.get("name"));
+				userNameLabel.setText((String) obj.get("userName"));
+				reps.setText((String) obj.get("reps"));
+				mGroup.setText((String) obj.get("muscleGroup"));
+				objs.setText("gain muscle");
+				location.setText((String) obj.get("location"));
+	
+				gP.add(newPane, 0, rowIndex);
 				rowIndex++;
-				}
 			}
 		} finally {
 			cursor.close();
@@ -117,28 +117,6 @@ public class RoutineView {
         this.closeMongoConnection();
 		this.routineStage.show();
 	}
-	
-	private AnchorPane getaC() throws IOException{
-		AnchorPane newPane = FXMLLoader.load(RoutineView.class.getResource("/routinePane.fxml"));
-		return newPane;
-	}
-	
-	private ArrayList<Label> getLabels(AnchorPane newPane){
-		Label routineName = (Label) newPane.lookup("#routineName");
-		Label userNameLabel = (Label) newPane.lookup("#userName");
-		Label reps = (Label) newPane.lookup("#reps");
-		Label mGroup = (Label) newPane.lookup("#mGroup");
-		Label objs = (Label) newPane.lookup("#objs");
-		Label location = (Label) newPane.lookup("#location");
-		ArrayList<Label> labelsList = new ArrayList<Label>();
-		labelsList.add(routineName);
-		labelsList.add(userNameLabel);
-		labelsList.add(reps);
-		labelsList.add(mGroup);
-		labelsList.add(objs);
-		labelsList.add(location);
-		return labelsList;
-		}
 	
 	private void initializeMongoConnection() {
         this.mongoClient = MongoClients.create(
