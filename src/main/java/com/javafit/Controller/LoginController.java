@@ -50,7 +50,7 @@ public class LoginController {
 		System.out.println("successfully closed mongo connection");
 	}
 	
-	public void generateHash() {
+	private void generateHash() {
 		StringBuilder hash = new StringBuilder();
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
@@ -66,5 +66,9 @@ public class LoginController {
 		}
 		this.passWord = hash.toString();
 	}
+        
+        public String getUsername() {
+            return this.userName;
+        }
 	
 }

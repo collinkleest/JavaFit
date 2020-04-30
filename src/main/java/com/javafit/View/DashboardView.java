@@ -102,7 +102,7 @@ public class DashboardView {
             Stage stage = (Stage) openBMICalc.getScene().getWindow();
             stage.close();
             
-            BMICalculatorView bmiCalcView = new BMICalculatorView();
+            //BMICalculatorView bmiCalcView = new BMICalculatorView();
         });
 
         Button openRoutines = new Button("Open Routine Manager");
@@ -127,7 +127,7 @@ public class DashboardView {
             Stage stage = (Stage) openReport.getScene().getWindow();
             stage.close();
             
-            ReportView reportView = new ReportView();
+            //ReportView reportView = new ReportView();
         });
 
         this.scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
