@@ -53,6 +53,22 @@ public class CustomRoutineController {
 		JFXCheckBox gCheck = (JFXCheckBox) this.cRoutineScene.lookup("#gCheck");
 		
 		JFXButton submitBtn = (JFXButton) this.cRoutineScene.lookup("#submitBtn");
+                submitBtn.setOnAction((ActionEvent event) -> {
+                    rInput.setText("");
+                    setsInput.setText("");
+                    mInput.setText("");
+                    sCheck.setIndeterminate(false);
+                    sCheck.setSelected(false);
+                    mCheck.setIndeterminate(false);
+                    mCheck.setSelected(false);
+                    lCheck.setIndeterminate(false);
+                    lCheck.setSelected(false);
+                    hCheck.setIndeterminate(false);
+                    hCheck.setSelected(false);
+                    gCheck.setIndeterminate(false);
+                    gCheck.setSelected(false);
+                    
+                });
 		JFXButton routinesBtn = (JFXButton) this.cRoutineScene.lookup("#routinesBtn");
 		JFXButton dashBtn = (JFXButton) this.cRoutineScene.lookup("#dashBtn");
 		
