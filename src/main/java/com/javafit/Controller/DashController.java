@@ -88,7 +88,7 @@ public class DashController {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
             try {
-				RoutineView routineView = new RoutineView(uName);
+				CustomRoutineController routineView = new CustomRoutineController(uName);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
