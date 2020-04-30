@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.bson.Document;
 
 import com.javafit.View.BMICalculatorView;
+import com.javafit.View.LoginView;
 import com.javafit.View.RegistrationView;
 import com.javafit.View.ReportView;
 import com.javafit.View.RoutineView;
@@ -86,9 +87,21 @@ public class DashController {
         routineBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
-            RoutineView routineView = new RoutineView(uName);
+            try {
+				RoutineView routineView = new RoutineView(uName);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         });
 
+        JFXButton logOut = (JFXButton) this.dashScene.lookup("#logoutBtn");
+        logOut.setOnAction((ActionEvent event) -> {
+        	Stage stage = (Stage) routineBtn.getScene().getWindow();
+            stage.close();
+            LoginView lV = new LoginView();
+        });
+        
         JFXButton reportBtn = (JFXButton) this.dashScene.lookup("#reportbtn");
         reportBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="70.0" prefWidth="449.0" style="-fx-background-color: #388087;">
          <center>
-            <Label text="Make a Custum Routine" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label text="Make a Custom Routine" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Monospaced Regular" size="22.0" />
                </font>
@@ -19,12 +20,41 @@
          </center>
       </BorderPane>
       <BorderPane layoutY="680.0" prefHeight="70.0" prefWidth="449.0" style="-fx-background-color: #388087;" />
-      <JFXTextField layoutX="103.0" layoutY="142.0" prefHeight="26.0" prefWidth="245.0" />
       <Label layoutX="103.0" layoutY="115.0" prefHeight="26.0" prefWidth="132.0" text="Routine Name">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="103.0" layoutY="203.0" text="Label" />
+      <Label layoutX="103.0" layoutY="188.0" prefHeight="26.0" prefWidth="132.0" text="Reps and Sets">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <JFXCheckBox id="mCheck" layoutX="182.0" layoutY="281.0" text="Gain Muscle" />
+      <JFXCheckBox id="sCheck" layoutX="45.0" layoutY="281.0" text="Gain Strength" />
+      <JFXCheckBox id="lCheck" layoutX="310.0" layoutY="281.0" text="Lose Weight" />
+      <Label layoutX="78.0" layoutY="255.0" prefHeight="26.0" prefWidth="314.0" text="What is this exercise intended to do">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="103.0" layoutY="318.0" prefHeight="26.0" prefWidth="132.0" text="Muscle Group">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="103.0" layoutY="392.0" prefHeight="26.0" prefWidth="132.0" text="Location">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <JFXCheckBox id="hCheck" layoutX="102.0" layoutY="432.0" text="Home" />
+      <JFXCheckBox id="gCheck" layoutX="226.0" layoutY="432.0" text="Gym" />
+      <JFXButton id="submitBtn" layoutX="92.0" layoutY="480.0" prefHeight="39.0" prefWidth="266.0" style="-fx-background-color: #BADFE7;" text="Submit Routine" />
+      <JFXButton id="routinesBtn" layoutX="13.0" layoutY="619.0" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #C2EDCE;" text="Back to Routines" />
+      <JFXButton id="dashBtn" layoutX="253.0" layoutY="619.0" prefHeight="39.0" prefWidth="182.0" style="-fx-background-color: #C2EDCE;" text="Dashboard" />
+      <TextField id="rInput" layoutX="102.0" layoutY="152.0" prefHeight="26.0" prefWidth="253.0" />
+      <TextField id="setsInput" layoutX="103.0" layoutY="223.0" prefHeight="26.0" prefWidth="253.0" />
+      <TextField id="mInput" layoutX="103.0" layoutY="349.0" prefHeight="26.0" prefWidth="253.0" />
    </children>
 </AnchorPane>

@@ -22,6 +22,7 @@
                   <Font name="Montserrat Bold" size="42.0" />
                </font>
             </Label>
+            <JFXButton id="logoutBtn" layoutX="7.0" layoutY="17.0" prefHeight="52.0" prefWidth="92.0" style="-fx-background-color: #C2EDCE;" text="Log Out" />
          </children>
       </AnchorPane>
       <AnchorPane layoutY="85.0" prefHeight="500.0" prefWidth="1100.0" style="-fx-background-color: #F6F6F2;">
