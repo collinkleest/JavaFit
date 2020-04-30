@@ -25,6 +25,7 @@ import javafx.stage.Stage;
  */
 public class ReportView {
     private Scene scene;
+    private String userName;
     
     /**
      * Starts the display
@@ -41,7 +42,8 @@ public class ReportView {
      * @param userName current username
      */
     public ReportView(String userName) {
-        //Initializations
+        this.userName = userName;
+	//Initializations
         GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
