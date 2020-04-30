@@ -55,25 +55,48 @@ public class ReportView {
         scenetitle.getStyleClass().setAll("strong", "h1");
         gP.add(scenetitle, 0, 0, 2, 1);
         
+        //Current Weight Label
+        Label currentWeight = new Label("Current Weight:");
+        currentWeight.getStyleClass().setAll("strong", "lead");
+        gP.add(currentWeight, 0, 1);
+        
+        //Current Weight Field
+        TextField currentWeightDisplay = new TextField();
+        gP.add(currentWeightDisplay, 1, 1);
+        currentWeightDisplay.setEditable(false);
+        currentWeightDisplay.setPrefWidth(150);  
+        
+        //Change Weight Button
+        Button changeWeightButton = new Button("Change");
+        changeWeightButton.setPrefHeight(40);
+        changeWeightButton.setDefaultButton(true);
+        changeWeightButton.setPrefWidth(100);
+        changeWeightButton.setAlignment(Pos.CENTER);
+        changeWeightButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
+        gP.add(changeWeightButton, 2, 1);
+        changeWeightButton.setOnAction((ActionEvent event) -> {
+            //Code here
+        });
+        
         //Weight Lost Label
         Label weightLost = new Label("Total Weight Lost:");
         weightLost.getStyleClass().setAll("strong", "lead");
-        gP.add(weightLost, 0, 1);
+        gP.add(weightLost, 0, 2);
 
         //Weight Lost Field
         TextField weightDisplay = new TextField();
-        gP.add(weightDisplay, 1, 1);
+        gP.add(weightDisplay, 1, 2);
         weightDisplay.setEditable(false);
         weightDisplay.setPrefWidth(150);
         
         //Weight Remaining Label
         Label weightToGo = new Label("Weight To Go:");
         weightToGo.getStyleClass().setAll("strong", "lead");
-        gP.add(weightToGo, 0, 2);
+        gP.add(weightToGo, 0, 3);
 
         //Weight Remaining Field
         TextField weightToGoDisplay = new TextField();
-        gP.add(weightToGoDisplay, 1, 2);
+        gP.add(weightToGoDisplay, 1, 3);
         weightToGoDisplay.setEditable(false);
         weightToGoDisplay.setPrefWidth(150);   
         
