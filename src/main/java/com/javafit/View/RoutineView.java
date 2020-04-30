@@ -7,11 +7,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import org.bson.Document;
 import org.kordamp.bootstrapfx.scene.layout.Panel;
@@ -46,16 +50,45 @@ public class RoutineView {
 		ScrollPane mainPane = (ScrollPane) this.routineScene.lookup("#mainPane");
         this.initializeMongoConnection();
         MongoCollection<Document> routinesCollection = this.routinesDB.getCollection("ROUTINES");
-		FindIterable<Document> iterable= routinesCollection.find();
+		FindIterable<Document> iterable = routinesCollection.find();
 		MongoCursor<Document> cursor = iterable.iterator();
+		GridPane gP = new GridPane();
+				
+		int rowIndex = 0;
 		
 		try {
 			while(cursor.hasNext()) {
-				System.out.println(cursor.next());
+				while(cursor.hasNext()) {
+				System.out.println(cursor.tryNext());
+				AnchorPane pane = this.getaC();
+				ArrayList<Label> labelList = this.getLabels(pane);
+				for (int i = 0; i < labelList.size(); i++) {
+					if (i == 0)
+							labelList.get(i).setText((String) cursor.tryNext().get("name"));
+					else if(i == 1)
+						labelList.get(i).setText((String) cursor.tryNext().get("userName"));
+					else if(i==2)
+						labelList.get(i).setText((String) cursor.tryNext().get("reps"));
+					else if(i==3)
+						labelList.get(i).setText((String) cursor.tryNext().get("muscleGroup"));
+					else if(i==4)
+						labelList.get(i).setText("gain muscle");
+					else if(i==5)
+						labelList.get(i).setText((String) cursor.tryNext().get("location"));
+				}
+				
+				
+				gP.add(pane, 0, rowIndex);
+				rowIndex++;
+				}
 			}
 		} finally {
 			cursor.close();
 		}
+		
+		mainPane.setPannable(true);
+		mainPane.setContent(gP);
+		
 		
         JFXButton dashBtn =  (JFXButton) this.routineScene.lookup("#dashBtn");
         dashBtn.setOnAction((ActionEvent event) -> {
@@ -81,9 +114,31 @@ public class RoutineView {
 			}
         });
         
-		
+        this.closeMongoConnection();
 		this.routineStage.show();
 	}
+	
+	private AnchorPane getaC() throws IOException{
+		AnchorPane newPane = FXMLLoader.load(RoutineView.class.getResource("/routinePane.fxml"));
+		return newPane;
+	}
+	
+	private ArrayList<Label> getLabels(AnchorPane newPane){
+		Label routineName = (Label) newPane.lookup("#routineName");
+		Label userNameLabel = (Label) newPane.lookup("#userName");
+		Label reps = (Label) newPane.lookup("#reps");
+		Label mGroup = (Label) newPane.lookup("#mGroup");
+		Label objs = (Label) newPane.lookup("#objs");
+		Label location = (Label) newPane.lookup("#location");
+		ArrayList<Label> labelsList = new ArrayList<Label>();
+		labelsList.add(routineName);
+		labelsList.add(userNameLabel);
+		labelsList.add(reps);
+		labelsList.add(mGroup);
+		labelsList.add(objs);
+		labelsList.add(location);
+		return labelsList;
+		}
 	
 	private void initializeMongoConnection() {
         this.mongoClient = MongoClients.create(

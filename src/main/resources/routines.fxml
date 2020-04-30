@@ -31,10 +31,6 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <ScrollPane id="mainPane" layoutY="63.0" prefHeight="678.0" prefWidth="965.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
-      </ScrollPane>
+      <ScrollPane id="mainPane" layoutY="63.0" prefHeight="678.0" prefWidth="965.0" />
    </children>
 </AnchorPane>
