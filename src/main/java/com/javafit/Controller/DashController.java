@@ -14,6 +14,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import static java.lang.Math.round;
 
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -65,16 +66,21 @@ public class DashController {
         this.determineMacros();
 
         PieChart pC = (PieChart) this.dashScene.lookup("#piechart");
-        PieChart.Data protein = new PieChart.Data("Protein", this.macros.get("protein"));
-        PieChart.Data carbs = new PieChart.Data("Carbs", this.macros.get("carbs"));
-        PieChart.Data fats = new PieChart.Data("Fats", this.macros.get("fats"));
+        double proteins = round(this.macros.get("protein")*100.0)/100.0;
+        double carb = round(this.macros.get("carbs")*100.0)/100.0;
+        double fat = round(this.macros.get("fats")*100.0)/100.0;
+        
+        PieChart.Data protein = new PieChart.Data("Protein (" + proteins + "g)", this.macros.get("protein"));
+        PieChart.Data carbs = new PieChart.Data("Carbs (" + carb + "g)", this.macros.get("carbs"));
+        PieChart.Data fats = new PieChart.Data("Fats (" + fat + "g)", this.macros.get("fats"));
 
         pC.getData().add(protein);
         pC.getData().add(carbs);
         pC.getData().add(fats);
-
-        pC.getData().forEach(data
-                -> data.nameProperty().bind(Bindings.concat(data.getName(), data.pieValueProperty() + "g")));
+        pC.setLabelsVisible(false);
+        
+//        pC.getData().forEach(data
+//                -> data.nameProperty().bind(Bindings.concat(data.getName(), data.pieValueProperty() + "g")));
 
         JFXButton routineBtn = (JFXButton) this.dashScene.lookup("#routinebtn");
         routineBtn.setOnAction((ActionEvent event) -> {
