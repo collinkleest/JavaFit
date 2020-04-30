@@ -1,6 +1,6 @@
 # Compiled class file
 *.class
-
+bin/
 # Log file
 *.log
 
@@ -8,6 +8,9 @@
 target/
 .project
 .classpath
+
+#kde swap
+*.kate-swp
 
 # BlueJ files
 *.ctxt
