@@ -1,6 +1,10 @@
 package com.javafit.View;
 
 import com.javafit.Controller.DashController;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +30,8 @@ import javafx.stage.Stage;
 public class ReportView {
     private Scene scene;
     private String userName;
+	private MongoClient mongoClient;
+	private MongoDatabase usersDB;
     
     /**
      * Starts the display
@@ -65,8 +71,8 @@ public class ReportView {
         //Current Weight Field
         TextField currentWeightDisplay = new TextField();
         gP.add(currentWeightDisplay, 1, 1);
-        currentWeightDisplay.setEditable(false);
-        currentWeightDisplay.setPrefWidth(150);  
+        currentWeightDisplay.setEditable(true);
+        currentWeightDisplay.setPrefWidth(150);
         
         //Change Weight Button
         Button changeWeightButton = new Button("Change");
@@ -77,7 +83,9 @@ public class ReportView {
         changeWeightButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(changeWeightButton, 2, 1);
         changeWeightButton.setOnAction((ActionEvent event) -> {
-            //Code here
+            
+        	//code here
+        	
         });
         
         //Weight Lost Label
@@ -138,4 +146,17 @@ public class ReportView {
         //Start the view
         this.start();
     }
+    
+    private void initializeMongoConnection() {
+        this.mongoClient = MongoClients.create(
+                "mongodb+srv://ckleest:ckk@javafit-qy8fa.mongodb.net/test?retryWrites=true&w=majority");
+        this.usersDB = mongoClient.getDatabase("USERS");
+    }
+
+    public void closeMongoConnection() {
+        System.out.println("closing mongo client");
+        this.mongoClient.close();
+        System.out.println("successfully closed mongo connection");
+    }
+    
 }
