@@ -1,5 +1,9 @@
 package com.javafit.View;
 
+import com.javafit.Controller.DashController;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -34,8 +38,9 @@ public class ReportView {
     
     /**
      * Constructor
+     * @param userName current username
      */
-    public ReportView() {
+    public ReportView(String userName) {
         //Initializations
         GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
@@ -95,7 +100,11 @@ public class ReportView {
             Stage stage = (Stage) goBackButton.getScene().getWindow();
             stage.close();
             
-            DashboardView dashboardView = new DashboardView();
+            try {
+                DashController dashboardView = new DashController(userName);
+            } catch (IOException ex) {
+                Logger.getLogger(ReportView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         
         //Add CSS StyleSheet

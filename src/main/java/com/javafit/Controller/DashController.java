@@ -44,7 +44,7 @@ public class DashController {
         this.dashStage.setScene(this.dashScene);
 
         Label welcomeString = (Label) dashScene.lookup("#welcomeString");
-        welcomeString.setText("Welcoeme " + uName + "!");
+        welcomeString.setText("Welcome " + uName + "!");
         this.initializeMongoConnection();
         this.queryWeight();
 
@@ -80,7 +80,7 @@ public class DashController {
         routineBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
-            RoutineView routineView = new RoutineView();
+            RoutineView routineView = new RoutineView(uName);
         });
 
         JFXButton reportBtn = (JFXButton) this.dashScene.lookup("#reportbtn");
@@ -88,13 +88,13 @@ public class DashController {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
 
-            ReportView reportView = new ReportView();
+            ReportView reportView = new ReportView(uName);
         });
         JFXButton bmiBtn = (JFXButton) this.dashScene.lookup("#bmibtn");
         bmiBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
-            BMICalculatorView bmiView = new BMICalculatorView();
+            BMICalculatorView bmiView = new BMICalculatorView(uName);
         });
 
         this.dashStage.show();

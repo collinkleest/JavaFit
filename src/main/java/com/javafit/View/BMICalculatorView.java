@@ -1,10 +1,14 @@
 package com.javafit.View;
 
 import com.javafit.Controller.BMICalculatorController;
+import com.javafit.Controller.DashController;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -46,8 +50,9 @@ public class BMICalculatorView {
 
     /**
      * Constructor
+     * @param userName current username
      */
-    public BMICalculatorView() {
+    public BMICalculatorView(String userName) {
         //Initializations;
         bmiController = new BMICalculatorController(this);
         GridPane gP = new GridPane();
@@ -117,7 +122,11 @@ public class BMICalculatorView {
             Stage stage = (Stage) openDashboard.getScene().getWindow();
             stage.close();
             this.closeMongoConnection();
-            DashboardView dashboardView = new DashboardView();
+            try {
+                DashController dashboardView = new DashController(userName);
+            } catch (IOException ex) {
+                Logger.getLogger(BMICalculatorView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
 
         //Bootstrap CSS

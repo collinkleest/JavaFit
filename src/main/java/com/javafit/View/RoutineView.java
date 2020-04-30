@@ -9,17 +9,17 @@ import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 
 public class RoutineView {
-	private Scene routineScene;
+	private final Scene routineScene;
 	
 	
-	public void start(){
+	private void start(){
 		Stage primaryStage = new Stage();
 		primaryStage.setScene(this.routineScene);
-		primaryStage.setTitle("Reset Password");
+		primaryStage.setTitle("JavaFit Routine Maker");
 		primaryStage.show();
 	}
 	
-	public RoutineView(){
+	public RoutineView(String userName){
 		GridPane gP = new GridPane();
 		gP.setAlignment(Pos.CENTER);
 		gP.setHgap(10);
