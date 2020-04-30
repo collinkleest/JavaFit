@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="449.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane prefHeight="70.0" prefWidth="449.0" style="-fx-background-color: #388087;">
+         <center>
+            <Label text="Make a Custum Routine" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Monospaced Regular" size="22.0" />
+               </font>
+            </Label>
+         </center>
+      </BorderPane>
+      <BorderPane layoutY="680.0" prefHeight="70.0" prefWidth="449.0" style="-fx-background-color: #388087;" />
+      <JFXTextField layoutX="103.0" layoutY="142.0" prefHeight="26.0" prefWidth="245.0" />
+      <Label layoutX="103.0" layoutY="115.0" prefHeight="26.0" prefWidth="132.0" text="Routine Name">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="103.0" layoutY="203.0" text="Label" />
+   </children>
+</AnchorPane>
