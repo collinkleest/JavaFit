@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="158.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="34.0" prefWidth="653.0" style="-fx-background-color: #388087;">
+         <children>
+            <Label id="routineName" layoutX="265.0" layoutY="7.0" text="Routine Name" textFill="WHITE">
+               <font>
+                  <Font name="Monospaced Regular" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="14.0" layoutY="43.0" prefHeight="16.0" prefWidth="102.0" style="-fx-font-weight: bold;" text="Created By:">
+         <font>
+            <Font name="Monospaced Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label id="userName" layoutX="116.0" layoutY="43.0" prefHeight="16.0" prefWidth="133.0" text="userName" />
+      <Label layoutX="14.0" layoutY="71.0" prefHeight="16.0" prefWidth="123.0" style="-fx-font-weight: bold;" text="Repitions/Sets:">
+         <font>
+            <Font name="Monospaced Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label id="reps" layoutX="158.0" layoutY="71.0" prefHeight="16.0" prefWidth="133.0" text="reps/sets" />
+      <Label layoutX="14.0" layoutY="101.0" prefHeight="16.0" prefWidth="123.0" style="-fx-font-weight: bold;" text="Muscle Group:">
+         <font>
+            <Font name="Monospaced Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label id="mGroup" layoutX="147.0" layoutY="101.0" prefHeight="16.0" prefWidth="123.0" text="muscle" />
+      <Label layoutX="400.0" layoutY="43.0" prefHeight="16.0" prefWidth="159.0" style="-fx-font-weight: bold;" text="Targeted Objectives">
+         <font>
+            <Font name="Monospaced Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label id="objs" layoutX="413.0" layoutY="63.0" prefHeight="21.0" prefWidth="230.0" text="objectives" />
+      <Label layoutX="400.0" layoutY="93.0" prefHeight="16.0" prefWidth="159.0" style="-fx-font-weight: bold;" text="Location:">
+         <font>
+            <Font name="Monospaced Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label id="location" layoutX="413.0" layoutY="117.0" prefHeight="21.0" prefWidth="230.0" text="location" />
+   </children>
+</AnchorPane>
