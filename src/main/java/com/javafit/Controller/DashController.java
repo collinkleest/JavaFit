@@ -95,6 +95,17 @@ public class DashController {
 			}
         });
 
+        JFXButton settingsBtn = (JFXButton) this.dashScene.lookup("#actBtn");
+        settingsBtn.setOnAction((ActionEvent event) -> {
+        	Stage stage = (Stage) routineBtn.getScene().getWindow();
+            stage.close();
+            try {
+				SettingsController sC = new SettingsController(this.userName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        });
+        
         JFXButton logOut = (JFXButton) this.dashScene.lookup("#logoutBtn");
         logOut.setOnAction((ActionEvent event) -> {
         	Stage stage = (Stage) routineBtn.getScene().getWindow();
