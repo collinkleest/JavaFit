@@ -111,14 +111,14 @@ public class LoginView {
                         "Form Error!", "You must enter a password!");
                 return;
             }
-            
+
             LoginController lC = new LoginController(userNameInput.getText(), passWordInput.getText());
             if (!lC.login()) {
                 showAlert(Alert.AlertType.ERROR, gP.getScene().getWindow(),
                         "Authentication Failed!", "Invalid username or password try again!");
-                
+
             } else {
-                
+
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("Successful Login");
                 alert.setHeaderText("Login Successful!");
@@ -128,16 +128,15 @@ public class LoginView {
                 lC.closeMongoConnection();
                 Stage stage = (Stage) loginButton.getScene().getWindow();
                 stage.close();
-                
+
                 try {
-					DashController dashC = new DashController(userNameInput.getText());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-                
+                    DashController dashC = new DashController(userNameInput.getText());
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
                 //DashboardView dashboardView = new DashboardView();
-                
             }
         });
 
