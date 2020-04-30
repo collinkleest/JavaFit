@@ -62,8 +62,8 @@ public class BMICalculatorView {
         gP.setPadding(new Insets(25, 25, 25, 25));
         this.initializeMongoConnection();
         this.scene = new Scene(gP, 300, 300);
-        this.queryWeight();
-        this.queryHeight();
+        this.queryWeight(userName);
+        this.queryHeight(userName);
         
 
         //Initial Style Setup
@@ -99,15 +99,27 @@ public class BMICalculatorView {
         calculate.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(calculate, 0, 3);
         calculate.setOnAction((ActionEvent event) -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Your BMI");
-            alert.setHeaderText("Your BMI is:");
-            
-            double calculatedBMI = bmiController.calculateBMI(heightDisplay.getText(), weightDisplay.getText());
-            
-            alert.setContentText(calculatedBMI + "");
-            alert.initOwner(gP.getScene().getWindow());
-            alert.show();
+            try {
+                Double.parseDouble(heightDisplay.getText());
+                Double.parseDouble(weightDisplay.getText());
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Your BMI");
+                alert.setHeaderText("Your BMI is:");
+
+                double calculatedBMI = bmiController.calculateBMI(heightDisplay.getText(), weightDisplay.getText());
+
+                alert.setContentText(calculatedBMI + "");
+                alert.initOwner(gP.getScene().getWindow());
+                alert.show();
+            } catch(Exception e) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Invalid");
+                alert.setHeaderText("Invalid");
+                alert.setContentText("Enter numbers. Height should be (feet.inches)");
+                alert.initOwner(gP.getScene().getWindow());
+                alert.show();
+            }
         });
 
         //Go Back Button Setup and Event Handler
@@ -136,14 +148,14 @@ public class BMICalculatorView {
         this.start();
     }
 
-    private void queryWeight() {
+    private void queryWeight(String userName) {
         FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", "Boyce"));
         
         this.userObj = iterable.first();
         this.weightString = "" + this.userObj.get("weight");
     }
     
-    private void queryHeight() {
+    private void queryHeight(String userName) {
         FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", "Boyce"));
         
         this.userObj = iterable.first();
