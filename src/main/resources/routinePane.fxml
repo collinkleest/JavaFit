@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="158.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -21,7 +22,7 @@
             <Font name="Monospaced Regular" size="13.0" />
          </font>
       </Label>
-      <Label id="userName" layoutX="116.0" layoutY="43.0" prefHeight="16.0" prefWidth="133.0" text="userName" />
+      <Label id="userName" layoutX="110.0" layoutY="43.0" prefHeight="16.0" prefWidth="133.0" text="userName" />
       <Label layoutX="14.0" layoutY="71.0" prefHeight="16.0" prefWidth="123.0" style="-fx-font-weight: bold;" text="Repitions/Sets:">
          <font>
             <Font name="Monospaced Regular" size="13.0" />
@@ -34,17 +35,24 @@
          </font>
       </Label>
       <Label id="mGroup" layoutX="147.0" layoutY="101.0" prefHeight="16.0" prefWidth="123.0" text="muscle" />
-      <Label layoutX="400.0" layoutY="43.0" prefHeight="16.0" prefWidth="159.0" style="-fx-font-weight: bold;" text="Targeted Objectives">
+      <Label layoutX="369.0" layoutY="43.0" prefHeight="16.0" prefWidth="159.0" style="-fx-font-weight: bold;" text="Targeted Objectives:">
          <font>
             <Font name="Monospaced Regular" size="13.0" />
          </font>
       </Label>
-      <Label id="objs" layoutX="413.0" layoutY="63.0" prefHeight="21.0" prefWidth="230.0" text="objectives" />
       <Label layoutX="400.0" layoutY="93.0" prefHeight="16.0" prefWidth="159.0" style="-fx-font-weight: bold;" text="Location:">
          <font>
             <Font name="Monospaced Regular" size="13.0" />
          </font>
       </Label>
-      <Label id="location" layoutX="413.0" layoutY="117.0" prefHeight="21.0" prefWidth="230.0" text="location" />
+      <AnchorPane layoutY="29.0" prefHeight="123.0" prefWidth="9.0" style="-fx-background-color: #388087;" />
+      <AnchorPane layoutX="-4.0" layoutY="151.0" prefHeight="7.0" prefWidth="653.0" style="-fx-background-color: #388087;" />
+      <AnchorPane layoutX="644.0" layoutY="27.0" prefHeight="131.0" prefWidth="9.0" style="-fx-background-color: #388087;" />
+      <JFXCheckBox id="muscle" checkedColor="#388087" layoutX="324.0" layoutY="70.0" text="Muscle" />
+      <JFXCheckBox id="strength" checkedColor="#388087" layoutX="427.0" layoutY="70.0" text="Strength" />
+      <JFXCheckBox id="weight" checkedColor="#388087" layoutX="528.0" layoutY="70.0" text="Lose Weight" />
+      <JFXCheckBox id="home" checkedColor="#388087" layoutX="350.0" layoutY="117.0" text="Home" />
+      <JFXCheckBox id="gym" checkedColor="#388087" layoutX="500.0" layoutY="117.0" text="Gym" />
+      <JFXButton layoutX="307.0" layoutY="58.0" prefHeight="42.0" prefWidth="324.0" text=" " />
    </children>
 </AnchorPane>

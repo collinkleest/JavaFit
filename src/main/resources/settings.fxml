@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="505.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -30,7 +32,14 @@
       <TextField id="userField" layoutX="227.0" layoutY="217.0" />
       <TextField id="weightField" layoutX="227.0" layoutY="264.0" />
       <TextField id="hField" layoutX="227.0" layoutY="312.0" />
-      <TextField id="passField" layoutX="227.0" layoutY="364.0" />
-      <TextField id="passCField" layoutX="227.0" layoutY="418.0" />
+      <PasswordField id="passField" layoutX="227.0" layoutY="364.0" />
+      <PasswordField id="passCField" layoutX="227.0" layoutY="410.0" />
+      <JFXCheckBox id="gMuscle" layoutX="83.0" layoutY="485.0" text="Gain Muscle" />
+      <JFXCheckBox id="gStrength" layoutX="204.0" layoutY="485.0" text="Gain Strength" />
+      <JFXCheckBox id="loseWeight" layoutX="353.0" layoutY="485.0" text="Lose Weight" />
+      <JFXCheckBox id="home" layoutX="137.0" layoutY="541.0" text="Home" />
+      <JFXCheckBox id="gym" layoutX="292.0" layoutY="541.0" text="Gym" />
+      <Label layoutX="62.0" layoutY="168.0" prefHeight="16.0" prefWidth="132.0" text="Change DOB:" />
+      <DatePicker id="dob" layoutX="204.0" layoutY="163.0" />
    </children>
 </AnchorPane>

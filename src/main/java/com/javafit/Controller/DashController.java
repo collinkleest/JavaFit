@@ -11,6 +11,7 @@ import com.javafit.View.RegistrationView;
 import com.javafit.View.ReportView;
 import com.javafit.View.RoutineView;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -44,7 +45,8 @@ public class DashController {
         this.dashStage = new Stage();
         this.dashScene = new Scene(loadFXML(), 1100, 658);
         this.dashStage.setScene(this.dashScene);
-
+        this.dashStage.setTitle("DashBoard");
+        
         Label welcomeString = (Label) dashScene.lookup("#welcomeString");
         welcomeString.setText("Welcome " + uName + "!");
         this.initializeMongoConnection();
@@ -80,9 +82,13 @@ public class DashController {
         pC.getData().add(fats);
         pC.setLabelsVisible(false);
         
-//        pC.getData().forEach(data
-//                -> data.nameProperty().bind(Bindings.concat(data.getName(), data.pieValueProperty() + "g")));
-
+        JFXCheckBox gMuscle = (JFXCheckBox) this.dashScene.lookup("#gMuscle");
+        JFXCheckBox gStrength = (JFXCheckBox) this.dashScene.lookup("#gStrength");
+        JFXCheckBox lWeight = (JFXCheckBox) this.dashScene.lookup("#lWeight");
+        gMuscle.setSelected((Boolean) this.userObj.get("gainMuscle"));
+        gStrength.setSelected((Boolean) this.userObj.get("gainStrength"));
+        lWeight.setSelected((Boolean) this.userObj.get("loseWeight"));
+        
         JFXButton routineBtn = (JFXButton) this.dashScene.lookup("#routinebtn");
         routineBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
@@ -95,6 +101,17 @@ public class DashController {
 			}
         });
 
+        JFXButton settingsBtn = (JFXButton) this.dashScene.lookup("#actBtn");
+        settingsBtn.setOnAction((ActionEvent event) -> {
+        	Stage stage = (Stage) routineBtn.getScene().getWindow();
+            stage.close();
+            try {
+				SettingsController sC = new SettingsController(this.userName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        });
+        
         JFXButton logOut = (JFXButton) this.dashScene.lookup("#logoutBtn");
         logOut.setOnAction((ActionEvent event) -> {
         	Stage stage = (Stage) routineBtn.getScene().getWindow();
