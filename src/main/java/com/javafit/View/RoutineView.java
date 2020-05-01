@@ -24,6 +24,7 @@ import com.javafit.Controller.CustomRoutineController;
 import com.javafit.Controller.DashController;
 import com.javafit.View.RegistrationView;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.mongodb.DBObject;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -40,7 +41,7 @@ public class RoutineView {
 	private Stage routineStage;
 	private MongoClient mongoClient;
 	private MongoDatabase routinesDB;
-
+	private Document userObject;
 	
 	public RoutineView(String userName) throws IOException{
 		this.userName = userName;
@@ -56,12 +57,13 @@ public class RoutineView {
 		GridPane gP = new GridPane();
 		int rowIndex = 0;
 		
-		mainPane.setPadding(new Insets(25, 75, 25, 200));
+		mainPane.setPadding(new Insets(25, 50, 25, 145));
+		
+		//MongoCollection<Document> usersCollection = this.mongoClient.getDatabase("USERS").getCollection("USERS");
+		//this.userObject = usersCollection.find(new Document("username", this.userName)).first();
 		
 		try {
 			while(cursor.hasNext()) {
-				
-				
 				Document obj = cursor.tryNext();
 				AnchorPane newPane = FXMLLoader.load(RoutineView.class.getResource("/routinePane.fxml"));
 				
@@ -69,17 +71,33 @@ public class RoutineView {
 				Label userNameLabel = (Label) newPane.lookup("#userName");
 				Label reps = (Label) newPane.lookup("#reps");
 				Label mGroup = (Label) newPane.lookup("#mGroup");
-				Label objs = (Label) newPane.lookup("#objs");
-				Label location = (Label) newPane.lookup("#location");
+				JFXCheckBox muscle = (JFXCheckBox) newPane.lookup("#muscle");
+				JFXCheckBox strength = (JFXCheckBox) newPane.lookup("#strength");
+				JFXCheckBox weight = (JFXCheckBox) newPane.lookup("#weight");
+				JFXCheckBox home = (JFXCheckBox) newPane.lookup("#home");
+				JFXCheckBox gym = (JFXCheckBox) newPane.lookup("#gym");
 				
-				System.out.println("" + obj.get("name"));
-				routineName.setText((String) obj.get("name"));
+				if (obj.getBoolean("gainMuscle")) {
+					muscle.setSelected(true);
+				}
+				if(obj.getBoolean("gainStrength")) {
+					strength.setSelected(true);
+				}
+				if(obj.getBoolean("loseWeight")) {
+					weight.setSelected(true);
+				}
+				if(obj.getString("location").strip().equalsIgnoreCase("home")) {
+					home.setSelected(true);
+				}
+				if(obj.getString("location").strip().equalsIgnoreCase("gym")) {
+					gym.setSelected(true);
+				}
+				
+				routineName.setText((obj.get("name").toString().toUpperCase()));
 				userNameLabel.setText((String) obj.get("userName"));
 				reps.setText((String) obj.get("reps"));
 				mGroup.setText((String) obj.get("muscleGroup"));
-				objs.setText("gain muscle");
-				location.setText((String) obj.get("location"));
-	
+				
 				gP.add(newPane, 0, rowIndex);
 				rowIndex++;
 			}
