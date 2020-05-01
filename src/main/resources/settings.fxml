@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -38,5 +39,7 @@
       <JFXCheckBox id="loseWeight" layoutX="353.0" layoutY="485.0" text="Lose Weight" />
       <JFXCheckBox id="home" layoutX="137.0" layoutY="541.0" text="Home" />
       <JFXCheckBox id="gym" layoutX="292.0" layoutY="541.0" text="Gym" />
+      <Label layoutX="62.0" layoutY="168.0" prefHeight="16.0" prefWidth="132.0" text="Change DOB:" />
+      <DatePicker id="dob" layoutX="204.0" layoutY="163.0" />
    </children>
 </AnchorPane>

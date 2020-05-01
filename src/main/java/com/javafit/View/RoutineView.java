@@ -56,7 +56,7 @@ public class RoutineView {
 		GridPane gP = new GridPane();
 		int rowIndex = 0;
 		
-		mainPane.setPadding(new Insets(25, 25, 25, 200));
+		mainPane.setPadding(new Insets(25, 75, 25, 200));
 		
 		try {
 			while(cursor.hasNext()) {
