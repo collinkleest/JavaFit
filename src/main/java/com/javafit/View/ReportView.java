@@ -167,7 +167,9 @@ public class ReportView {
         gP.add(weightDisplay, 1, 3);
         weightDisplay.setEditable(false);
         weightDisplay.setPrefWidth(150);
-        weightDisplay.setText((Double.parseDouble(userObj.get("weight").toString())-Double.parseDouble(userObj.get("currentWeight").toString()) + " lbs"));
+        if (userObj.get("currentWeight") != null) {
+            weightDisplay.setText((Double.parseDouble(userObj.get("weight").toString())-Double.parseDouble(userObj.get("currentWeight").toString()) + " lbs"));
+        }
 
         //Weight Remaining Label
         Label weightToGo = new Label("Weight To Go:");
@@ -179,14 +181,23 @@ public class ReportView {
         gP.add(weightToGoDisplay, 1, 4);
         weightToGoDisplay.setEditable(false);
         weightToGoDisplay.setPrefWidth(150);
-        weightToGoDisplay.setText((Double.parseDouble(userObj.get("currentWeight").toString())-Double.parseDouble(userObj.get("goal").toString()) + " lbs"));
+        if (userObj.get("currentWeight") != null && userObj.get("goal") != null) {
+            weightToGoDisplay.setText((Double.parseDouble(userObj.get("currentWeight").toString())-Double.parseDouble(userObj.get("goal").toString()) + " lbs"));
+        }
 
         //Creating Pie Chart
         PieChart.Data data[] = new PieChart.Data[2];
         String keyTerms[] = {"Completed", "To Go"};
-        double iAmTemporary[] = {Double.parseDouble(userObj.get("weight").toString())-Double.parseDouble(userObj.get("currentWeight").toString()), Double.parseDouble(userObj.get("currentWeight").toString())-Double.parseDouble(userObj.get("goal").toString())};
-        for (int i = 0; i < 2; i++) {
-            data[i] = new PieChart.Data(keyTerms[i], iAmTemporary[i]);
+        double iAmTemporary[] = {0,1};
+        double actualValues[] = {Double.parseDouble(userObj.get("weight").toString())-Double.parseDouble(userObj.get("currentWeight").toString()), Double.parseDouble(userObj.get("currentWeight").toString())-Double.parseDouble(userObj.get("goal").toString())};
+        if (userObj.get("currentWeight") != null && userObj.get("goal") != null) {
+            for (int i = 0; i < 2; i++) {
+                data[i] = new PieChart.Data(keyTerms[i],actualValues[i]);
+            }
+        } else {
+            for (int i = 0; i < 2; i++) {
+                data[i] = new PieChart.Data(keyTerms[i],iAmTemporary[i]);
+            }
         }
         PieChart pie_chart = new PieChart(FXCollections.observableArrayList(data));
         pie_chart.setPrefSize(300, 300);
