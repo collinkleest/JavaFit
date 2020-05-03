@@ -1,5 +1,6 @@
 package com.javafit.View;
 
+//class imports
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,18 +20,22 @@ import javafx.stage.Stage;
  */
 public class DashboardView {
 
+	//class attributes
     private final Scene scene;
     private boolean gainMuscle;
     private boolean gainStrength;
     private boolean loseWeight;
 
+    
+    //class start method to set scene
     private void start() {
         Stage primaryStage = new Stage();
         primaryStage.setScene(this.scene);
         primaryStage.setTitle("JavaFit Dashboard");
         primaryStage.show();
     }
-
+ 
+    //class constructor
     public DashboardView() {
         gainMuscle = false;
         gainStrength = false;

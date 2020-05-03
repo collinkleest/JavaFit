@@ -1,5 +1,6 @@
 package com.javafit.View;
 
+// class imports
 import com.javafit.Controller.DashController;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.FindIterable;

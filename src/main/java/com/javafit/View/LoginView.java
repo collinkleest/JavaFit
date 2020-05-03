@@ -1,5 +1,8 @@
 package com.javafit.View;
 
+/*
+ * Class Imports
+ */
 import java.io.IOException;
 
 import com.javafit.Controller.DashController;
@@ -24,8 +27,10 @@ import javafx.stage.Window;
 
 public class LoginView {
 
+	//class attributes
     private Scene loginScene;
 
+    //start method to display instantiated object of class
     private void start() {
         Stage primaryStage = new Stage();
         primaryStage.setScene(this.loginScene);
@@ -33,6 +38,9 @@ public class LoginView {
         primaryStage.show();
     }
 
+    /*
+     * Class Construtor creates all UI elements into a single scene/stage
+     */
     public LoginView() {
         GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
@@ -132,11 +140,8 @@ public class LoginView {
                 try {
                     DashController dashC = new DashController(userNameInput.getText());
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-
-                //DashboardView dashboardView = new DashboardView();
             }
         });
 
@@ -145,6 +150,9 @@ public class LoginView {
         this.start();
     }
 
+    /*
+     * Alert method which displays an alert under certain criteria in the method arguments
+     */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

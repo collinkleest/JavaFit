@@ -1,12 +1,12 @@
 package com.javafit.Controller;
 
+//class imports
 import java.io.IOException;
 
 import org.bson.Document;
 
 import com.javafit.Model.Routine;
 import com.javafit.View.RegistrationView;
-import com.javafit.View.RoutineView;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
@@ -26,15 +26,21 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class CustomRoutineController {
-
+	
+	//class attributes
     private MongoClient mongoClient;
     private MongoDatabase usersDB;
     private String userName;
     private Stage cRoutineStage;
     private Scene cRoutineScene;
-
     private Routine tempRoutine;
 
+    
+    /*
+     * Class constructor, takes username as param
+     * Grabs all FXML Elements from resource folder.
+     * Includes action listeners based on user input.
+     */
     public CustomRoutineController(String uName) throws IOException {
         this.userName = uName;
         this.cRoutineStage = new Stage();
@@ -59,7 +65,7 @@ public class CustomRoutineController {
             Stage stage = (Stage) routinesBtn.getScene().getWindow();
             stage.close();
             try {
-                RoutineView rV = new RoutineView(this.userName);
+                RoutineController rV = new RoutineController(this.userName);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -113,6 +119,10 @@ public class CustomRoutineController {
         this.cRoutineStage.show();
     }
 
+    /*
+     * Adds a new routine into the mongodb database.
+     * Takes from all of the fields entered by user.
+     */
     private void insertRoutine() {
         MongoCollection<Document> collection = usersDB.getCollection("ROUTINES");
         Document tempDoc = new Document();
@@ -131,6 +141,10 @@ public class CustomRoutineController {
         collection.insertOne(tempDoc);
     }
 
+    /*
+     * Private method that shows displays an alert based on alert type(enum), window owner, title
+     * and a desired message.
+     */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -140,18 +154,27 @@ public class CustomRoutineController {
         alert.show();
     }
 
+    /*
+     * Starts a connection with mongodb database.
+     */
     private void initializeMongoConnection() {
         this.mongoClient = MongoClients.create(
                 "mongodb+srv://ckleest:ckk@javafit-qy8fa.mongodb.net/test?retryWrites=true&w=majority");
         this.usersDB = mongoClient.getDatabase("ROUTINES");
     }
 
+    /*
+     * closes a connection with mongodb database.
+     */
     public void closeMongoConnection() {
         System.out.println("closing mongo client");
         this.mongoClient.close();
         System.out.println("successfully closed mongo connection");
     }
 
+    /*
+     * Grabs FXML file and loads it.
+     */
     private static Parent loadFXML() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RegistrationView.class.getResource("/routinemaker.fxml"));
         return fxmlLoader.load();

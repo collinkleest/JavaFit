@@ -10,7 +10,6 @@ import com.javafit.View.BMICalculatorView;
 import com.javafit.View.LoginView;
 import com.javafit.View.RegistrationView;
 import com.javafit.View.ReportView;
-import com.javafit.View.RoutineView;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.mongodb.client.FindIterable;
@@ -42,18 +41,25 @@ public class DashController {
     private Double totalCalories;
     private Integer weightNum;
 
+    /*
+     * Class constructor, see individual comments in constructor for more details.
+     */
     public DashController(String uName) throws IOException {
-        this.userName = uName;
+        // instantiating class attributes
+    	// includes fxml ui elements
+    	this.userName = uName;
         this.dashStage = new Stage();
         this.dashScene = new Scene(loadFXML(), 1100, 658);
         this.dashStage.setScene(this.dashScene);
         this.dashStage.setTitle("DashBoard");
 
+        // welcome string queries the current username
         Label welcomeString = (Label) dashScene.lookup("#welcomeString");
         welcomeString.setText("Welcome " + uName + "!");
         this.initializeMongoConnection();
         this.queryWeight();
 
+        //displays total calories depending on user inputs
         if ((boolean) this.userObj.get("gainStrength")) {
             this.totalCalories = (double) (((Integer.parseInt(this.weightString)) * 17.5) + 500);
         } else if ((boolean) this.userObj.get("gainMuscle")) {
@@ -62,6 +68,7 @@ public class DashController {
             this.totalCalories = (double) (((Integer.parseInt(this.weightString)) * 17) - 500);
         }
 
+        // more fxml attributes
         this.weightNum = Integer.parseInt(this.weightString);
         Label weightLabel = (Label) this.dashScene.lookup("#weight");
         weightLabel.setText(this.weightString);
@@ -70,6 +77,7 @@ public class DashController {
         caloriesLabel.setText("" + (this.totalCalories));
         this.determineMacros();
 
+        //pie chart determined by macros calculations
         PieChart pC = (PieChart) this.dashScene.lookup("#piechart");
         double proteins = round(this.macros.get("protein") * 100.0) / 100.0;
         double carb = round(this.macros.get("carbs") * 100.0) / 100.0;
@@ -84,6 +92,7 @@ public class DashController {
         pC.getData().add(fats);
         pC.setLabelsVisible(false);
 
+        //more fxml elements 
         JFXCheckBox gMuscle = (JFXCheckBox) this.dashScene.lookup("#gMuscle");
         JFXCheckBox gStrength = (JFXCheckBox) this.dashScene.lookup("#gStrength");
         JFXCheckBox lWeight = (JFXCheckBox) this.dashScene.lookup("#lWeight");
@@ -91,18 +100,19 @@ public class DashController {
         gStrength.setSelected((Boolean) this.userObj.get("gainStrength"));
         lWeight.setSelected((Boolean) this.userObj.get("loseWeight"));
 
+        // button and action 
         JFXButton routineBtn = (JFXButton) this.dashScene.lookup("#routinebtn");
         routineBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
             try {
-                RoutineView routineView = new RoutineView(uName);
+                RoutineController routineView = new RoutineController(uName);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 System.out.println(e.getMessage());
             }
         });
-
+        
+        // button and action 
         JFXButton settingsBtn = (JFXButton) this.dashScene.lookup("#actBtn");
         settingsBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
@@ -113,7 +123,8 @@ public class DashController {
                 System.out.println(e.getMessage());
             }
         });
-
+        
+        // button and action 
         JFXButton logOut = (JFXButton) this.dashScene.lookup("#logoutBtn");
         logOut.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
@@ -121,6 +132,7 @@ public class DashController {
             LoginView lV = new LoginView();
         });
 
+        // button and action 
         JFXButton reportBtn = (JFXButton) this.dashScene.lookup("#reportbtn");
         reportBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
@@ -128,16 +140,22 @@ public class DashController {
 
             ReportView reportView = new ReportView(uName);
         });
+        
+        // button and action 
         JFXButton bmiBtn = (JFXButton) this.dashScene.lookup("#bmibtn");
         bmiBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
             BMICalculatorView bmiView = new BMICalculatorView(uName);
         });
-
+        
+        // display dashboard
         this.dashStage.show();
     }
 
+    /*
+     * Queries mongodb database and grabs users weight.
+     */
     private void queryWeight() {
         FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", this.userName));
         this.userObj = iterable.first();
@@ -148,6 +166,10 @@ public class DashController {
         }
     }
 
+    /*
+     * Method to determine the users macros based on their input.
+     * Appends to the macros hashmap.
+     */
     private void determineMacros() {
         this.macros = new HashMap<>();
         System.out.print(this.totalCalories);
@@ -167,18 +189,27 @@ public class DashController {
         System.out.println(macros.toString());
     }
 
+    /*
+     * Starts a connection with mongodb database.
+     */
     private void initializeMongoConnection() {
         this.mongoClient = MongoClients.create(
                 "mongodb+srv://ckleest:ckk@javafit-qy8fa.mongodb.net/test?retryWrites=true&w=majority");
         this.usersDB = mongoClient.getDatabase("USERS");
     }
 
+    /*
+     * closes a connection with mongodb database.
+     */
     public void closeMongoConnection() {
         System.out.println("closing mongo client");
         this.mongoClient.close();
         System.out.println("successfully closed mongo connection");
     }
 
+    /*
+     * Grabs FXML file and loads it.
+     */
     private static Parent loadFXML() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RegistrationView.class.getResource("/dash.fxml"));
         return fxmlLoader.load();

@@ -52,7 +52,7 @@ public class ResetController {
 	/*
 	 * Validates if the users inputs match the account they want to reset the password for.
 	 * Checks their username, and if the date of birth matches with that username.
-	 * Mkaes a query to ge that user object, then checks the users authenticity. 
+	 * Mkaes a query to ge that user object, then checks the users authenticity.
 	 */
 	public boolean validate() {
 		FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", this.userName));

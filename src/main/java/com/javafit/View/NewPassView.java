@@ -1,6 +1,5 @@
 package com.javafit.View;
 
-import com.javafit.Controller.ResetController;
 import com.javafit.Controller.SendResetController;
 
 import javafx.event.ActionEvent;

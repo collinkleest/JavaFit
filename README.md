@@ -6,7 +6,8 @@ This repository is based on a Fitness application written in Java.
 2. [Dependencies](#Dependencies)
 3. [File Structure](#Project-File-Structure)
 4. [Features](#Features)
-5. [Tasks](#Tasks)
+5. [Project Showcase](#Project-Showcase)
+6. [Tasks](#Tasks)
 
 
 ### Compatibility
@@ -45,21 +46,21 @@ All dependencies are placed in the `pom.xml` file. When the Maven project is bui
 </dependency>    
 ```
 
-*Bootstrap Fx*
+*Bootstrap Fx (Design Framework)*
 ```xml
 <dependency>
-        	<groupId>org.kordamp.bootstrapfx</groupId>
-        	<artifactId>bootstrapfx-core</artifactId>
-        	<version>0.2.4</version>
+    <groupId>org.kordamp.bootstrapfx</groupId>
+    <artifactId>bootstrapfx-core</artifactId>
+    <version>0.2.4</version>
 </dependency>
 ```
 
-*JFOENIX Design Framework*
+*JFOENIX (Design Framework)*
 ```xml
 <dependency>
-    		<groupId>com.jfoenix</groupId>
-    		<artifactId>jfoenix</artifactId>
-    		<version>9.0.8</version>
+    <groupId>com.jfoenix</groupId>
+    <artifactId>jfoenix</artifactId>
+    <version>9.0.8</version>
 </dependency>
 ```
 
@@ -71,7 +72,7 @@ All dependencies are placed in the `pom.xml` file. When the Maven project is bui
     <version>1.1.1</version>
 </dependency>
 ```
-*MongoDB*
+*MongoDB Client*
 ```xml
 <dependency>    
     <groupId>org.mongodb</groupId>
@@ -121,33 +122,66 @@ JavaFit
 * Exercises
 
 
+### Project Showcase
+
+**Registration**
+
+!["create_account"](img/project-snapshots/create_account.png)
+
+**DashBoard**
+
+!["dashboard view"](img/project-snapshots/dash.png)
+
+**Routines**
+
+!["routines view"](img/project-snapshots/routines.png)
+
+**Custom Routines**
+
+!["custome-routines"](img/project-snapshots/customroutine.png)
+
+**Custom Reporting**
+
+!["custom-reporting"](img/project-snapshots/report.png)
+
+**Account Management**
+
+!["account management"](img/project-snapshots/account_manager.png)
+
+**BMI Calculator**
+
+!["bmi-calc"](img/project-snapshots/bmi_calc.png)
+
+**Password Reset**
+
+!["pass-reset"](img/project-snapshots/pw_reset.png)
+
 ### Tasks
-- [ ] UI / UX
+- [x] UI / UX
     - [x] Registration View
         - [x] Fields
         - [x] Checkboxes
         - [x] Accept terms and conditions
-        - [ ] Improve user experience
-        - [ ] Improve astetics
-            - [ ] Grid Layout, component placement
-            - [ ] Colors, UI overall looks better
+        - [x] Improve user experience
+        - [x] Improve astetics
+            - [x] Grid Layout, component placement
+            - [x] Colors, UI overall looks better
     - [x] Login View
         - [x] Fields
         - [x] Login, Create Account button
-        - [ ] Improve user experience
-        - [ ] Improve astetics
-            - [ ] Colors, UI overall looks better
-        - [ ] Forgot Password
-    - [ ] Routines View
-    - [ ] Dashboard View
+        - [x] Improve user experience
+        - [x] Improve astetics
+            - [x] Colors, UI overall looks better
+        - [x] Forgot Password
+    - [x] Routines View
+    - [x] Dashboard View
     - [x] Password Reset View
-- [ ] Backend
-    - [ ] DB
+- [x] Backend
+    - [x] DB
         - [x] MongoDB external DB setup
         - [x] MongoDB DB connection
         - [x] Test users in database
-        - [ ] routine databse
-        - [ ] foods databse
+        - [x] routine databse
     - [x] User
         - [x] Password Hashing
         - [x] JSON
