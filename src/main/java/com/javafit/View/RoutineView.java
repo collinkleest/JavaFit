@@ -64,7 +64,7 @@ public class RoutineView {
         try {
             while (cursor.hasNext()) {
                 Document obj = cursor.tryNext();
-                if(!obj.get("userName").equals(this.userName)) {
+                if(obj != null && !this.userName.equals(obj.get("userName"))) {
                     continue;
                 }
                 AnchorPane newPane = FXMLLoader.load(RoutineView.class.getResource("/routinePane.fxml"));
