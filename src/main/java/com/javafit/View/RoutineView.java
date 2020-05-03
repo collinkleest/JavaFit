@@ -58,8 +58,8 @@ public class RoutineView {
 
         mainPane.setPadding(new Insets(25, 50, 25, 145));
 
-        MongoCollection<Document> usersCollection = this.mongoClient.getDatabase("USERS").getCollection("USERS");
-        this.userObject = usersCollection.find(new Document("username", this.userName)).first();
+        //MongoCollection<Document> usersCollection = this.mongoClient.getDatabase("USERS").getCollection("USERS");
+        //this.userObject = usersCollection.find(new Document("username", this.userName)).first();
 
         try {
             while (cursor.hasNext()) {
