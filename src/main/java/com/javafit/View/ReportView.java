@@ -2,12 +2,8 @@ package com.javafit.View;
 
 // class imports
 import com.javafit.Controller.DashController;
+import com.javafit.Controller.ReportController;
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
-
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,11 +29,8 @@ import org.bson.Document;
  */
 public class ReportView {
 
-    private Scene scene;
-    private String userName;
-    private MongoClient mongoClient;
-    private MongoDatabase usersDB;
-    private Document userObj;
+    private final Scene scene;
+    private final ReportController reportController;
 
     /**
      * Starts the display
@@ -52,10 +45,11 @@ public class ReportView {
     /**
      * Constructor
      *
-     * @param userName current username
+     * @param reportController
+     * @param userName
      */
-    public ReportView(String userName) {
-        this.userName = userName;
+    public ReportView(ReportController reportController, String userName) {
+        this.reportController = reportController;
         //Initializations
         GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
@@ -64,9 +58,9 @@ public class ReportView {
         gP.setPadding(new Insets(25, 25, 25, 25));
         this.scene = new Scene(gP, 750, 600);
 
-        this.initializeMongoConnection();
-        this.getUserObj(userName);
-        this.closeMongoConnection();
+        reportController.initializeMongoConnection();
+        Document userObj = reportController.getUserObj(userName);
+        reportController.closeMongoConnection();
 
         //Initializing further visual components
         Text scenetitle = new Text("Your Progress Report");
@@ -84,12 +78,13 @@ public class ReportView {
         gP.add(currentWeightDisplay, 1, 1);
         currentWeightDisplay.setEditable(true);
         currentWeightDisplay.setPrefWidth(150);
-        this.initializeMongoConnection();
-        if (this.userObj.get("currentWeight") == null) {
-            currentWeightDisplay.setText(this.userObj.get("weight").toString());
+        reportController.initializeMongoConnection();
+        if (userObj.get("currentWeight") == null) {
+            currentWeightDisplay.setText(userObj.get("weight").toString());
         } else {
-            currentWeightDisplay.setText(this.userObj.get("currentWeight").toString());
+            currentWeightDisplay.setText(userObj.get("currentWeight").toString());
         }
+        reportController.closeMongoConnection();
 
         //Change Weight Button
         Button changeWeightButton = new Button("Change");
@@ -100,9 +95,9 @@ public class ReportView {
         changeWeightButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(changeWeightButton, 2, 1);
         changeWeightButton.setOnAction((ActionEvent event) -> {
-            this.initializeMongoConnection();
+            reportController.initializeMongoConnection();
             BasicDBObject queryObj = new BasicDBObject();
-            queryObj.put("username", this.userName);
+            queryObj.put("username", userName);
 
             BasicDBObject newDoc = new BasicDBObject();
 
@@ -113,8 +108,8 @@ public class ReportView {
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDoc);
 
-            this.usersDB.getCollection("USERS").updateOne(queryObj, updateObject);
-            this.closeMongoConnection();
+            reportController.getUsersDB().getCollection("USERS").updateOne(queryObj, updateObject);
+            reportController.closeMongoConnection();
         });
 
         //Current Weight Goal Label
@@ -127,10 +122,11 @@ public class ReportView {
         gP.add(targetWeightDisplay, 1, 2);
         targetWeightDisplay.setEditable(true);
         targetWeightDisplay.setPrefWidth(150);
-        this.initializeMongoConnection();
+        reportController.initializeMongoConnection();
         if (userObj.get("goal") != null) {
             targetWeightDisplay.setText(userObj.get("goal").toString());
         }
+        reportController.closeMongoConnection();
 
         //Change Goal Button
         Button changeGoalButton = new Button("Change");
@@ -141,9 +137,9 @@ public class ReportView {
         changeGoalButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(changeGoalButton, 2, 2);
         changeGoalButton.setOnAction((ActionEvent event) -> {
-            this.initializeMongoConnection();
+            reportController.initializeMongoConnection();
             BasicDBObject queryObj = new BasicDBObject();
-            queryObj.put("username", this.userName);
+            queryObj.put("username", userName);
 
             BasicDBObject newDoc = new BasicDBObject();
 
@@ -154,8 +150,8 @@ public class ReportView {
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDoc);
 
-            this.usersDB.getCollection("USERS").updateOne(queryObj, updateObject);
-            this.closeMongoConnection();
+            reportController.getUsersDB().getCollection("USERS").updateOne(queryObj, updateObject);
+            reportController.closeMongoConnection();
         });
 
         //Weight Lost Label
@@ -212,14 +208,14 @@ public class ReportView {
         Button refreshBtn = new Button("Refresh");
         refreshBtn.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(refreshBtn, 1, 7);
-        
+
         //refresh page
         refreshBtn.setOnAction((ActionEvent event) -> {
-        	Stage stage = (Stage) refreshBtn.getScene().getWindow();
+            Stage stage = (Stage) refreshBtn.getScene().getWindow();
             stage.close();
-            ReportView rVV = new ReportView(this.userName);
+            ReportController rVV = new ReportController(userName);
         });
-        
+
         //Go Back Button and Event Handler
         Button goBackButton = new Button("Go Back");
         goBackButton.setPrefHeight(40);
@@ -244,23 +240,6 @@ public class ReportView {
 
         //Start the view
         this.start();
-    }
-
-    private void initializeMongoConnection() {
-        this.mongoClient = MongoClients.create(
-                "mongodb+srv://ckleest:ckk@javafit-qy8fa.mongodb.net/test?retryWrites=true&w=majority");
-        this.usersDB = mongoClient.getDatabase("USERS");
-    }
-
-    public void closeMongoConnection() {
-        System.out.println("closing mongo client");
-        this.mongoClient.close();
-        System.out.println("successfully closed mongo connection");
-    }
-
-    private void getUserObj(String uName) {
-        FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", uName));
-        this.userObj = iterable.first();
     }
 
 }

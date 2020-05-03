@@ -138,7 +138,7 @@ public class DashController {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
 
-            ReportView reportView = new ReportView(uName);
+            ReportController reportController = new ReportController(uName);
         });
         
         // button and action 
