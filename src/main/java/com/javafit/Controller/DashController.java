@@ -46,7 +46,7 @@ public class DashController {
         this.dashScene = new Scene(loadFXML(), 1100, 658);
         this.dashStage.setScene(this.dashScene);
         this.dashStage.setTitle("DashBoard");
-        
+
         Label welcomeString = (Label) dashScene.lookup("#welcomeString");
         welcomeString.setText("Welcome " + uName + "!");
         this.initializeMongoConnection();
@@ -69,10 +69,10 @@ public class DashController {
         this.determineMacros();
 
         PieChart pC = (PieChart) this.dashScene.lookup("#piechart");
-        double proteins = round(this.macros.get("protein")*100.0)/100.0;
-        double carb = round(this.macros.get("carbs")*100.0)/100.0;
-        double fat = round(this.macros.get("fats")*100.0)/100.0;
-        
+        double proteins = round(this.macros.get("protein") * 100.0) / 100.0;
+        double carb = round(this.macros.get("carbs") * 100.0) / 100.0;
+        double fat = round(this.macros.get("fats") * 100.0) / 100.0;
+
         PieChart.Data protein = new PieChart.Data("Protein (" + proteins + "g)", this.macros.get("protein"));
         PieChart.Data carbs = new PieChart.Data("Carbs (" + carb + "g)", this.macros.get("carbs"));
         PieChart.Data fats = new PieChart.Data("Fats (" + fat + "g)", this.macros.get("fats"));
@@ -81,44 +81,44 @@ public class DashController {
         pC.getData().add(carbs);
         pC.getData().add(fats);
         pC.setLabelsVisible(false);
-        
+
         JFXCheckBox gMuscle = (JFXCheckBox) this.dashScene.lookup("#gMuscle");
         JFXCheckBox gStrength = (JFXCheckBox) this.dashScene.lookup("#gStrength");
         JFXCheckBox lWeight = (JFXCheckBox) this.dashScene.lookup("#lWeight");
         gMuscle.setSelected((Boolean) this.userObj.get("gainMuscle"));
         gStrength.setSelected((Boolean) this.userObj.get("gainStrength"));
         lWeight.setSelected((Boolean) this.userObj.get("loseWeight"));
-        
+
         JFXButton routineBtn = (JFXButton) this.dashScene.lookup("#routinebtn");
         routineBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
             try {
-				RoutineView routineView = new RoutineView(uName);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+                RoutineView routineView = new RoutineView(uName);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                System.out.println(e.getMessage());
+            }
         });
 
         JFXButton settingsBtn = (JFXButton) this.dashScene.lookup("#actBtn");
         settingsBtn.setOnAction((ActionEvent event) -> {
-        	Stage stage = (Stage) routineBtn.getScene().getWindow();
+            Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
             try {
-				SettingsController sC = new SettingsController(this.userName);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+                SettingsController sC = new SettingsController(this.userName);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         });
-        
+
         JFXButton logOut = (JFXButton) this.dashScene.lookup("#logoutBtn");
         logOut.setOnAction((ActionEvent event) -> {
-        	Stage stage = (Stage) routineBtn.getScene().getWindow();
+            Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
             LoginView lV = new LoginView();
         });
-        
+
         JFXButton reportBtn = (JFXButton) this.dashScene.lookup("#reportbtn");
         reportBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
@@ -139,7 +139,11 @@ public class DashController {
     private void queryWeight() {
         FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", this.userName));
         this.userObj = iterable.first();
-        this.weightString = "" + this.userObj.get("weight");
+        if(this.userObj.get("currentWeight") == null) {
+            this.weightString = "" + this.userObj.get("weight");
+        } else {
+            this.weightString = "" + this.userObj.get("currentWeight");
+        }
     }
 
     private void determineMacros() {

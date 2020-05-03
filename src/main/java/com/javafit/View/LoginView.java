@@ -62,7 +62,7 @@ public class LoginView {
 
         Button registerButton = new Button("Register");
         registerButton.setPrefHeight(40);
-        registerButton.setDefaultButton(true);
+        registerButton.setDefaultButton(false);
         registerButton.setPrefWidth(100);
         registerButton.setAlignment(Pos.CENTER);
         registerButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
@@ -78,7 +78,7 @@ public class LoginView {
 
         Button resetPasswordBtn = new Button("Reset Password");
         resetPasswordBtn.setPrefHeight(40);
-        resetPasswordBtn.setDefaultButton(true);
+        resetPasswordBtn.setDefaultButton(false);
         resetPasswordBtn.setPrefWidth(400);
         resetPasswordBtn.setAlignment(Pos.CENTER);
         resetPasswordBtn.getStyleClass().setAll("btn-sm", "btn-info", "lead");
