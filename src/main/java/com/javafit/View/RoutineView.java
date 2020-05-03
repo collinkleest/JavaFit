@@ -68,7 +68,7 @@ public class RoutineView {
                     continue;
                 }
                 AnchorPane newPane = FXMLLoader.load(RoutineView.class.getResource("/routinePane.fxml"));
-
+                newPane.setPadding(new Insets(25, 10, 25, 10));
                 Label routineName = (Label) newPane.lookup("#routineName");
                 Label userNameLabel = (Label) newPane.lookup("#userName");
                 Label reps = (Label) newPane.lookup("#reps");

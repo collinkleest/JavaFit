@@ -1,5 +1,6 @@
 package com.javafit.Controller;
-
+ 
+//class imports
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -29,14 +30,15 @@ import javafx.stage.Window;
 
 
 public class SettingsController {
+	// general settings attributes including a user object, username, mongo db and client.
 	private String userName;
 	private MongoClient mongoClient;
 	private MongoDatabase usersDB;
-	private Stage settingsStage;
-    private Scene settingsScene;
 	private Document userObj;
     
     //fxml ui elements
+	private Stage settingsStage;
+    private Scene settingsScene;
     private TextField userNameField;
     private TextField weightField;
     private TextField heightField;
@@ -72,6 +74,9 @@ public class SettingsController {
         this.gym = (JFXCheckBox) this.settingsScene.lookup("#gym");
         this.dob = (DatePicker) this.settingsScene.lookup("#dob");
         
+        
+        // start mongodb connection
+        // grab the current users object from DB
         // make initial query for form info
         this.initializeMongoConnection();
         this.getUserObj(uName);
@@ -79,12 +84,15 @@ public class SettingsController {
         
          
 
-        //submit button action event
+        // submit button action event
+        // starts a mongo connection, uses update account function to update the account fields
+        // shows an alert, refills the field
         JFXButton submitBtn = (JFXButton) this.settingsScene.lookup("#submitBtn");
         submitBtn.setOnAction((ActionEvent event) -> {
         	this.initializeMongoConnection();
         	this.updateAccount();
         	this.showAlert(AlertType.CONFIRMATION, this.settingsScene.getWindow(), "Update Successful", "Your Update has been successful!");
+        	this.getUserObj(uName);
         	this.fillFields();
         	this.closeMongoConnection();
         });
@@ -107,11 +115,21 @@ public class SettingsController {
 		this.settingsStage.show();
 	}
 	
+	/*
+	 * Loads FXML view from project resources folder.
+	 * returns an FXML document to controller
+	 */
 	private static Parent loadFXML() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SettingsController.class.getResource("/settings.fxml"));
         return fxmlLoader.load();
     }
 	
+	
+	/*
+	 * Makes a database query to update the current user with the fields on the settings page
+	 * Even if fields aren't filled and left default, query will still occur, and user object will stay the same.
+	 * Method gets activated by the submit button.
+	 */
 	private void updateAccount() {
 		BasicDBObject queryObj = new BasicDBObject();
 		queryObj.put("username", this.userName);
@@ -142,7 +160,11 @@ public class SettingsController {
 		
 		this.usersDB.getCollection("USERS").updateOne(queryObj, updateObject);	
 	}
-	
+
+	/*
+	 * This method fills all the FXML fields and checkboxes with the current users selection of settings.
+	 * Makes a query to the database and fills fields with the response of the query.
+	 */
 	private void fillFields(){
 		this.userNameField.setText((String) this.userObj.get("username"));
 		this.weightField.setText((String) this.userObj.get("weight"));
@@ -154,18 +176,28 @@ public class SettingsController {
 		this.gym.setSelected((Boolean)this.userObj.get("gym"));
 		this.dob.setValue(LocalDate.parse((CharSequence) this.userObj.get("dob")));
 	}
-	
+
+	/*
+	 * This function makes a query to grab the user object depending on the current user that has logged on.
+	 */
 	private void getUserObj(String uName) {
 		FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", this.userName));
 		this.userObj = iterable.first();
 	}
 	
+	/*
+	 * This method starts an active connection with the MongoDB database.
+	 */
 	private void initializeMongoConnection() {
         this.mongoClient = MongoClients.create(
                 "mongodb+srv://ckleest:ckk@javafit-qy8fa.mongodb.net/test?retryWrites=true&w=majority");
         this.usersDB = mongoClient.getDatabase("USERS");
     }
 	
+	/*
+	 * This method creates a JavaFX alert with some parameters ( a JavaFX enum of AlertType, the window to display over,
+	 * the alert title, and the alert message.
+	 */
 	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -175,6 +207,9 @@ public class SettingsController {
         alert.show();
     }
 	
+	/*
+	 * This method takes in a password and coverts it to a MD5 hash of the password.
+	 */
 	private String generatePasswordHash(String passWord) {
 		StringBuilder hash = new StringBuilder();
 		try {
@@ -191,7 +226,10 @@ public class SettingsController {
 		}
 		return hash.toString();
 	}
-
+	
+	/*
+	 * This method simply closes the current mongodb connection. 
+	 */
     public void closeMongoConnection() {
         System.out.println("closing mongo client");
         this.mongoClient.close();
