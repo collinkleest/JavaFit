@@ -204,6 +204,21 @@ public class ReportView {
         pie_chart.setPrefSize(300, 300);
         gP.add(pie_chart, 0, 5, 2, 1);
 
+        // refresh ui elements
+        Label refresh = new Label("Click Refresh to See New Changes");
+        refresh.getStyleClass().setAll("strong", "lead");
+        gP.add(refresh, 0, 7);
+        Button refreshBtn = new Button("Refresh");
+        refreshBtn.getStyleClass().setAll("btn-sm", "btn-info", "lead");
+        gP.add(refreshBtn, 1, 7);
+        
+        //refresh page
+        refreshBtn.setOnAction((ActionEvent event) -> {
+        	Stage stage = (Stage) refreshBtn.getScene().getWindow();
+            stage.close();
+            ReportView rVV = new ReportView(this.userName);
+        });
+        
         //Go Back Button and Event Handler
         Button goBackButton = new Button("Go Back");
         goBackButton.setPrefHeight(40);

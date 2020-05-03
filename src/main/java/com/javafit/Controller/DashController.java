@@ -1,5 +1,6 @@
 package com.javafit.Controller;
 
+//class imports
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -29,6 +30,7 @@ import javafx.stage.Stage;
 
 public class DashController {
 
+	//class attributes includes FXML elements
     private String userName;
     private String weightString;
     private Stage dashStage;
