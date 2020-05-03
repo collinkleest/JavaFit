@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -105,7 +106,7 @@ public class RegistrationView {
         gainMuscle.setStyle("-jfx-checked-color: BLUE; -jfx-unchecked-color: BLACK;");
         gP.add(gainMuscle, 1, 8);
 
-        JFXCheckBox gainStrength = new JFXCheckBox("Gain Stength");
+        JFXCheckBox gainStrength = new JFXCheckBox("Gain Strength");
         gainStrength.setStyle("-jfx-checked-color: BLUE; -jfx-unchecked-color: BLACK;");
         gP.add(gainStrength, 2, 8);
 
@@ -129,13 +130,18 @@ public class RegistrationView {
         terms.getStyleClass().setAll("strong", "lead");
         gP.add(terms, 0, 10);
 
+        ToggleGroup termsGroup = new ToggleGroup();
+     
         JFXRadioButton termRadio = new JFXRadioButton("Yes, I accept");
         termRadio.setStyle("-jfx-selected-color: GREEN; -jfx-unselected-color: BLACK;");
+        termRadio.setToggleGroup(termsGroup);
         gP.add(termRadio, 1, 10);
 
         JFXRadioButton termRadio2 = new JFXRadioButton("No, I decline");
         termRadio2.setStyle("-jfx-selected-color: RED; -jfx-unselected-color: BLACK;");
+        termRadio2.setToggleGroup(termsGroup);
         gP.add(termRadio2, 2, 10);
+        
 
         Button loginButton = new Button("Login");
         loginButton.setPrefHeight(40);
