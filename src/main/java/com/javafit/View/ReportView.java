@@ -62,7 +62,7 @@ public class ReportView {
         gP.setVgap(10);
         gP.setPadding(new Insets(25, 25, 25, 25));
         this.scene = new Scene(gP, 750, 600);
-        
+
         this.initializeMongoConnection();
         this.getUserObj(userName);
         this.closeMongoConnection();
@@ -84,7 +84,7 @@ public class ReportView {
         currentWeightDisplay.setEditable(true);
         currentWeightDisplay.setPrefWidth(150);
         this.initializeMongoConnection();
-        if(this.userObj.get("currentWeight") == null) {
+        if (this.userObj.get("currentWeight") == null) {
             currentWeightDisplay.setText(this.userObj.get("weight").toString());
         } else {
             currentWeightDisplay.setText(this.userObj.get("currentWeight").toString());
@@ -115,7 +115,7 @@ public class ReportView {
             this.usersDB.getCollection("USERS").updateOne(queryObj, updateObject);
             this.closeMongoConnection();
         });
-        
+
         //Current Weight Goal Label
         Label targetWeight = new Label("Target Weight:");
         targetWeight.getStyleClass().setAll("strong", "lead");
@@ -127,11 +127,11 @@ public class ReportView {
         targetWeightDisplay.setEditable(true);
         targetWeightDisplay.setPrefWidth(150);
         this.initializeMongoConnection();
-        if(userObj.get("goal") != null) {
+        if (userObj.get("goal") != null) {
             targetWeightDisplay.setText(userObj.get("goal").toString());
         }
-        
-         //Change Goal Button
+
+        //Change Goal Button
         Button changeGoalButton = new Button("Change");
         changeGoalButton.setPrefHeight(40);
         changeGoalButton.setDefaultButton(true);
@@ -168,7 +168,7 @@ public class ReportView {
         weightDisplay.setEditable(false);
         weightDisplay.setPrefWidth(150);
         if (userObj.get("currentWeight") != null) {
-            weightDisplay.setText((Double.parseDouble(userObj.get("weight").toString())-Double.parseDouble(userObj.get("currentWeight").toString()) + " lbs"));
+            weightDisplay.setText((Double.parseDouble(userObj.get("weight").toString()) - Double.parseDouble(userObj.get("currentWeight").toString()) + " lbs"));
         }
 
         //Weight Remaining Label
@@ -182,22 +182,22 @@ public class ReportView {
         weightToGoDisplay.setEditable(false);
         weightToGoDisplay.setPrefWidth(150);
         if (userObj.get("currentWeight") != null && userObj.get("goal") != null) {
-            weightToGoDisplay.setText((Double.parseDouble(userObj.get("currentWeight").toString())-Double.parseDouble(userObj.get("goal").toString()) + " lbs"));
+            weightToGoDisplay.setText((Double.parseDouble(userObj.get("currentWeight").toString()) - Double.parseDouble(userObj.get("goal").toString()) + " lbs"));
         }
 
         //Creating Pie Chart
         PieChart.Data data[] = new PieChart.Data[2];
         String keyTerms[] = {"Completed", "To Go"};
-        double iAmTemporary[] = {0,1};
-                
+        double iAmTemporary[] = {0, 1};
+
         if (userObj.get("currentWeight") != null && userObj.get("goal") != null) {
-            double actualValues[] = {Double.parseDouble(userObj.get("weight").toString())-Double.parseDouble(userObj.get("currentWeight").toString()), Double.parseDouble(userObj.get("currentWeight").toString())-Double.parseDouble(userObj.get("goal").toString())};
+            double actualValues[] = {Double.parseDouble(userObj.get("weight").toString()) - Double.parseDouble(userObj.get("currentWeight").toString()), Double.parseDouble(userObj.get("currentWeight").toString()) - Double.parseDouble(userObj.get("goal").toString())};
             for (int i = 0; i < 2; i++) {
-                data[i] = new PieChart.Data(keyTerms[i],actualValues[i]);
+                data[i] = new PieChart.Data(keyTerms[i], actualValues[i]);
             }
         } else {
             for (int i = 0; i < 2; i++) {
-                data[i] = new PieChart.Data(keyTerms[i],iAmTemporary[i]);
+                data[i] = new PieChart.Data(keyTerms[i], iAmTemporary[i]);
             }
         }
         PieChart pie_chart = new PieChart(FXCollections.observableArrayList(data));
@@ -241,10 +241,10 @@ public class ReportView {
         this.mongoClient.close();
         System.out.println("successfully closed mongo connection");
     }
-    
+
     private void getUserObj(String uName) {
-		FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", uName));
-		this.userObj = iterable.first();
-	}
+        FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", uName));
+        this.userObj = iterable.first();
+    }
 
 }
