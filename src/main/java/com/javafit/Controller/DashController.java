@@ -126,7 +126,7 @@ public class DashController {
             Stage stage = (Stage) routineBtn.getScene().getWindow();
             stage.close();
 
-            ReportView reportView = new ReportView(uName);
+            ReportController reportController = new ReportController(uName);
         });
         JFXButton bmiBtn = (JFXButton) this.dashScene.lookup("#bmibtn");
         bmiBtn.setOnAction((ActionEvent event) -> {
