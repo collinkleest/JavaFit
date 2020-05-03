@@ -106,7 +106,7 @@ public class RegistrationView {
         gainMuscle.setStyle("-jfx-checked-color: BLUE; -jfx-unchecked-color: BLACK;");
         gP.add(gainMuscle, 1, 8);
 
-        JFXCheckBox gainStrength = new JFXCheckBox("Gain Stength");
+        JFXCheckBox gainStrength = new JFXCheckBox("Gain Strength");
         gainStrength.setStyle("-jfx-checked-color: BLUE; -jfx-unchecked-color: BLACK;");
         gP.add(gainStrength, 2, 8);
 
