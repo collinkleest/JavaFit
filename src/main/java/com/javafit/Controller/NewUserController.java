@@ -1,5 +1,6 @@
 package com.javafit.Controller;
 
+// class imports
 import org.bson.Document;
 
 import com.javafit.Model.User;
@@ -11,10 +12,14 @@ import com.mongodb.client.MongoDatabase;
 
 public class NewUserController {
 	
+	// class attributes
 	private MongoClient mongoClient;
 	private MongoDatabase usersDB;
 	private User tempUser;
 	
+	/*
+	 * Constructor that takes in all the attributes for a user and creates a user.
+	 */
 	public NewUserController(String name, String height, String weight, String dob,
 			String uName, String pWord, boolean muscle, boolean strength,
 			boolean loseWeight, boolean home, boolean gym) {
