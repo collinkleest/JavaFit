@@ -189,8 +189,9 @@ public class ReportView {
         PieChart.Data data[] = new PieChart.Data[2];
         String keyTerms[] = {"Completed", "To Go"};
         double iAmTemporary[] = {0,1};
-        double actualValues[] = {Double.parseDouble(userObj.get("weight").toString())-Double.parseDouble(userObj.get("currentWeight").toString()), Double.parseDouble(userObj.get("currentWeight").toString())-Double.parseDouble(userObj.get("goal").toString())};
+                
         if (userObj.get("currentWeight") != null && userObj.get("goal") != null) {
+            double actualValues[] = {Double.parseDouble(userObj.get("weight").toString())-Double.parseDouble(userObj.get("currentWeight").toString()), Double.parseDouble(userObj.get("currentWeight").toString())-Double.parseDouble(userObj.get("goal").toString())};
             for (int i = 0; i < 2; i++) {
                 data[i] = new PieChart.Data(keyTerms[i],actualValues[i]);
             }
