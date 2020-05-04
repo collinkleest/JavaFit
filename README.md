@@ -46,6 +46,15 @@ All dependencies are placed in the `pom.xml` file. When the Maven project is bui
 </dependency>    
 ```
 
+*JavaFXML*
+```xml
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-fxml</artifactId>
+    <version>15-ea+4</version>
+</dependency>
+```
+
 *Bootstrap Fx (Design Framework)*
 ```xml
 <dependency>
