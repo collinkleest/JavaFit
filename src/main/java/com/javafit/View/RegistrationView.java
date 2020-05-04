@@ -1,26 +1,23 @@
 package com.javafit.View;
 
+//class imports
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-
-import com.javafit.Controller.DashController;
 import com.javafit.Controller.NewUserController;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -30,10 +27,19 @@ import javafx.stage.Window;
 
 public class RegistrationView {
 
+	//class attribute
     private Scene scene;
 
+    /*
+     * Class Constructor creates a registraiton view scene
+     * this scene is contains all the ui elements and action listeners
+     */
     public RegistrationView() {
-        GridPane gP = new GridPane();
+        /*
+         * JAVAFX UI ELEMENTS
+         */
+    	
+    	GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
         gP.setVgap(10);
@@ -105,7 +111,7 @@ public class RegistrationView {
         gainMuscle.setStyle("-jfx-checked-color: BLUE; -jfx-unchecked-color: BLACK;");
         gP.add(gainMuscle, 1, 8);
 
-        JFXCheckBox gainStrength = new JFXCheckBox("Gain Stength");
+        JFXCheckBox gainStrength = new JFXCheckBox("Gain Strength");
         gainStrength.setStyle("-jfx-checked-color: BLUE; -jfx-unchecked-color: BLACK;");
         gP.add(gainStrength, 2, 8);
 
@@ -129,13 +135,18 @@ public class RegistrationView {
         terms.getStyleClass().setAll("strong", "lead");
         gP.add(terms, 0, 10);
 
+        ToggleGroup termsGroup = new ToggleGroup();
+     
         JFXRadioButton termRadio = new JFXRadioButton("Yes, I accept");
         termRadio.setStyle("-jfx-selected-color: GREEN; -jfx-unselected-color: BLACK;");
+        termRadio.setToggleGroup(termsGroup);
         gP.add(termRadio, 1, 10);
 
         JFXRadioButton termRadio2 = new JFXRadioButton("No, I decline");
         termRadio2.setStyle("-jfx-selected-color: RED; -jfx-unselected-color: BLACK;");
+        termRadio2.setToggleGroup(termsGroup);
         gP.add(termRadio2, 2, 10);
+        
 
         Button loginButton = new Button("Login");
         loginButton.setPrefHeight(40);
@@ -155,6 +166,9 @@ public class RegistrationView {
 
        
         
+        /*
+         * JAVAFX ACTION LISTENERS
+         */
         
         loginButton.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) loginButton.getScene().getWindow();
@@ -255,13 +269,16 @@ public class RegistrationView {
             LoginView lV = new LoginView();
         });
 
+        //gets the bootstrapfx css
         this.scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
     }
 
     
     
-    
+    /*
+     * SHOWS A JAVAFX ALERT WITH GIVEN ARGUMENTS
+     */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -271,6 +288,9 @@ public class RegistrationView {
         alert.show();
     }
 
+    /*
+     * GET SCENE METOD to RETURN THE CURRENT SCENE
+     */
     public Scene getScene() {
         return this.scene;
     }

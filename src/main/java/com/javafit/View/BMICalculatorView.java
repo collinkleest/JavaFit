@@ -1,5 +1,6 @@
 package com.javafit.View;
 
+// class imports
 import com.javafit.Controller.BMICalculatorController;
 import com.javafit.Controller.DashController;
 import com.mongodb.client.FindIterable;
@@ -30,6 +31,7 @@ import org.bson.Document;
  */
 public class BMICalculatorView {
 
+	//class attributes
     private final Scene scene;
     private MongoClient mongoClient;
     private MongoDatabase usersDB;
@@ -148,6 +150,10 @@ public class BMICalculatorView {
         this.start();
     }
 
+    /* 
+     * NOTE TO REDUCE COMPLEXITY MINIMAL QUERY FEATURES ARE IMPLEMENTED IN THIS CLASS EVEN THOUGH IT IS A VIEW
+     * Query weight from mongo database
+     */
     private void queryWeight(String userName) {
         FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", "Boyce"));
         
@@ -155,6 +161,9 @@ public class BMICalculatorView {
         this.weightString = "" + this.userObj.get("weight");
     }
     
+    /*
+     * Query height from mongo database
+     */
     private void queryHeight(String userName) {
         FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", "Boyce"));
         
@@ -162,12 +171,18 @@ public class BMICalculatorView {
         this.heightString = "" + this.userObj.get("height");
     }
 
+    /*
+     * Start up a mongo db connection
+     */
     private void initializeMongoConnection() {
         this.mongoClient = MongoClients.create(
                 "mongodb+srv://ckleest:ckk@javafit-qy8fa.mongodb.net/test?retryWrites=true&w=majority");
         this.usersDB = mongoClient.getDatabase("USERS");
     }
 
+    /*
+     * close a mongo db connection
+     */
     public void closeMongoConnection() {
         System.out.println("closing mongo client");
         this.mongoClient.close();

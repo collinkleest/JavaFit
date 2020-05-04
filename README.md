@@ -6,7 +6,8 @@ This repository is based on a Fitness application written in Java.
 2. [Dependencies](#Dependencies)
 3. [File Structure](#Project-File-Structure)
 4. [Features](#Features)
-5. [Tasks](#Tasks)
+5. [Project Showcase](#Project-Showcase)
+6. [Tasks](#Tasks)
 
 
 ### Compatibility
@@ -54,22 +55,21 @@ All dependencies are placed in the `pom.xml` file. When the Maven project is bui
 </dependency>
 ```
 
-
-*Bootstrap Fx*
+*Bootstrap Fx (Design Framework)*
 ```xml
 <dependency>
-        	<groupId>org.kordamp.bootstrapfx</groupId>
-        	<artifactId>bootstrapfx-core</artifactId>
-        	<version>0.2.4</version>
+    <groupId>org.kordamp.bootstrapfx</groupId>
+    <artifactId>bootstrapfx-core</artifactId>
+    <version>0.2.4</version>
 </dependency>
 ```
 
-*JFOENIX Design Framework*
+*JFOENIX (Design Framework)*
 ```xml
 <dependency>
-    		<groupId>com.jfoenix</groupId>
-    		<artifactId>jfoenix</artifactId>
-    		<version>9.0.8</version>
+    <groupId>com.jfoenix</groupId>
+    <artifactId>jfoenix</artifactId>
+    <version>9.0.8</version>
 </dependency>
 ```
 
@@ -81,7 +81,7 @@ All dependencies are placed in the `pom.xml` file. When the Maven project is bui
     <version>1.1.1</version>
 </dependency>
 ```
-*MongoDB*
+*MongoDB Client*
 ```xml
 <dependency>    
     <groupId>org.mongodb</groupId>
@@ -97,6 +97,10 @@ JavaFit
 │   README.md
 │   LICENSE    
 │   pom.xml
+|
+└── img/project-snapshots
+|   └─ *.png
+|
 └───src/main/java
 │   │   
 │   │   
@@ -106,19 +110,34 @@ JavaFit
 │   │   │   Register.java
 │   │   |   RegistrationView.java
 |   |   |   NewPassView.java
-|   |   └── ResetPassView.java
+|   |   |   ResetPassView.java
+|   |   |   ReportView.java
+|   |   └── BMICalculatorView.java
 │   |
 |   └─── com.javafit.Model
 |   |   |   Person.java
+|   |   |   Routine.java
 |   |   └── User.java
 |   |  
 |   └───com.javafit.Controller
 |       |   LoginController.java
 |       |   NewUserController.java
+|       |   CustomRoutineController.java
+|       |   SettingsController.java
+|       |   RoutineController.java
+|       |   DashController.java
+|       |   ReportController.java
+|       |   BMICalculatorController.java
 |       |   ResetController.java
 |       └── SendResetController.java
-└───────────────────────────────────   
-
+└───src/main/resources
+|    |
+|    |   dash.fxml
+|    |   routinemaker.fxml
+|    |   routinePane.fxml
+|    |   routines.fxml
+|    └── settings.fxml
+└────────────────────────────────
 ```
 
 
@@ -126,13 +145,61 @@ JavaFit
 
 * GUI Interface
 * Account Login
+    * Account Settings Modification
+* Reporting
+    * Report progresss
+    * New weights
+    * Pie charts
 * Weight Tracking
-* Calorie Trackig
+* Calorie Tracking
+* Personalized Suggestions
+    * Suggested Calories
+    * Suggested Macros
+    * Suggested Routines
 * Exercises
+* Custom Routines
+    * Routine Viewer
+* Cross Platform 
+    * Mac, Windows, Linux
+* BMI Calculator
 
+
+### Project Showcase
+
+**Registration**
+
+!["create_account"](img/project-snapshots/create_account.png)
+
+**DashBoard**
+
+!["dashboard view"](img/project-snapshots/dash.png)
+
+**Routines**
+
+!["routines view"](img/project-snapshots/routines.png)
+
+**Custom Routines**
+
+!["custome-routines"](img/project-snapshots/customroutine.png)
+
+**Custom Reporting**
+
+!["custom-reporting"](img/project-snapshots/report.png)
+
+**Account Management**
+
+!["account management"](img/project-snapshots/account_manager.png)
+
+**BMI Calculator**
+
+!["bmi-calc"](img/project-snapshots/bmi_calc.png)
+
+**Password Reset**
+
+!["pass-reset"](img/project-snapshots/pw_reset.png)
 
 ### Tasks
-- [ ] UI / UX
+- [x] UI / UX
     - [x] Registration View
         - [x] Fields
         - [x] Checkboxes
@@ -148,16 +215,15 @@ JavaFit
         - [x] Improve astetics
             - [x] Colors, UI overall looks better
         - [x] Forgot Password
-    - [ ] Routines View
-    - [ ] Dashboard View
+    - [x] Routines View
+    - [x] Dashboard View
     - [x] Password Reset View
-- [ ] Backend
-    - [ ] DB
+- [x] Backend
+    - [x] DB
         - [x] MongoDB external DB setup
         - [x] MongoDB DB connection
         - [x] Test users in database
-        - [ ] routine databse
-        - [ ] foods databse
+        - [x] routine databse
     - [x] User
         - [x] Password Hashing
         - [x] JSON

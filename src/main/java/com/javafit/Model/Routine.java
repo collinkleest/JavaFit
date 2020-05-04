@@ -1,7 +1,8 @@
 package com.javafit.Model;
 
 public class Routine {
-	
+
+	//class attributes
 	private String routineName;
 	private String sets;
 	private boolean gainStrength;
@@ -10,6 +11,10 @@ public class Routine {
 	private String muscleGroup;
 	private boolean home;
 	private boolean gym;
+	
+	/*
+	 * Constructor to instantiate a routine object
+	 */
 	public Routine(String routineName, String sets, boolean gainStrength, boolean gainMuscle, boolean loseWeight,
 			String muscleGroup, boolean home, boolean gym) {
 		super();
@@ -22,6 +27,20 @@ public class Routine {
 		this.home = home;
 		this.gym = gym;
 	}
+	
+	/*
+	 * To string method for debugging and printing out the attributes of a routine object
+	 */
+	@Override
+	public String toString() {
+		return "Routine [routineName=" + routineName + ", sets=" + sets + ", gainStrength=" + gainStrength
+				+ ", gainMuscle=" + gainMuscle + ", loseWeight=" + loseWeight + ", muscleGroup=" + muscleGroup
+				+ ", home=" + home + ", gym=" + gym + "]";
+	}
+
+	/*
+	 * Below are all getters and setters for the class
+	 */
 	public String getRoutineName() {
 		return routineName;
 	}

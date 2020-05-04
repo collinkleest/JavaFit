@@ -9,7 +9,7 @@ public class Person {
 	private String weight;
 	private String dob;
 	
-	
+	//constructor for a person takes in name, height, weight, and date of birth.
 	public Person(String name, String height, String weight, String dob) {
 		this.name = name;
 		this.height = height;
@@ -18,6 +18,9 @@ public class Person {
 	}
 
 
+	/*
+	 * Below is all the getters and setters for the class
+	 */
 	public String getName() {
 		return name;
 	}
@@ -58,6 +61,9 @@ public class Person {
 	}
 
 
+	/*
+	 * TO string method for debugging, prints out person object
+	 */
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", height=" + height + ", weight=" + weight + ", dob=" + dob + "]";
