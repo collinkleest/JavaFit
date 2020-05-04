@@ -1,5 +1,6 @@
 package com.javafit.View;
 
+//class imports 
 import com.javafit.Controller.ResetController;
 
 import javafx.event.ActionEvent;
@@ -20,8 +21,12 @@ import javafx.stage.Window;
 
 public class ResetPassView {
 
+	//class attibute 
     private Scene resetScene;
 
+    /*
+     * start method, creates the current scene
+     */
     private void start() {
         Stage primaryStage = new Stage();
         primaryStage.setScene(this.resetScene);
@@ -29,8 +34,15 @@ public class ResetPassView {
         primaryStage.show();
     }
 
+    /*
+     * Class constructor, creates the UI Scene for the reset password view
+     */
     public ResetPassView() {
-        GridPane gP = new GridPane();
+       
+    	/*
+    	 * JAVAFX UI ELEMENTS
+    	 */
+    	GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
         gP.setVgap(10);
@@ -72,6 +84,10 @@ public class ResetPassView {
         goBackButton.getStyleClass().setAll("strong", "lead", "btn-info", "btn-sm");
         gP.add(goBackButton, 1, 3);
 
+        
+        /*
+         * JAVAFX EVENT LISTENERS
+         */
         resetButton.setOnAction((ActionEvent event) -> {
             if (userNameLabel.getText().isEmpty()) {
                 showAlert(Alert.AlertType.ERROR, gP.getScene().getWindow(),
@@ -103,11 +119,16 @@ public class ResetPassView {
             LoginView loginView = new LoginView();
         });
 
+        //grabs bootstrapfx css
         resetScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
+        //starts the current scene
         this.start();
     }
 
+    /*
+     * Method to create and display an alert with specific parameters
+     */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

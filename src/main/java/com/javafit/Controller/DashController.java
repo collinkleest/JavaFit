@@ -9,7 +9,6 @@ import org.bson.Document;
 import com.javafit.View.BMICalculatorView;
 import com.javafit.View.LoginView;
 import com.javafit.View.RegistrationView;
-import com.javafit.View.ReportView;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.mongodb.client.FindIterable;
@@ -18,7 +17,6 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import static java.lang.Math.round;
 
-import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -42,7 +42,11 @@ public class LoginView {
      * Class Construtor creates all UI elements into a single scene/stage
      */
     public LoginView() {
-        GridPane gP = new GridPane();
+        /*
+         * JAVAFX UI ELEMENTS
+         */
+    	
+    	GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
         gP.setVgap(10);
@@ -92,6 +96,10 @@ public class LoginView {
         resetPasswordBtn.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(resetPasswordBtn, 0, 4, 2, 1);
 
+        
+        /*
+         * ACTION EVENTS
+         */
         registerButton.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
@@ -145,8 +153,10 @@ public class LoginView {
             }
         });
 
+        // grab bootstrapfx stylesheet
         loginScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
+        //initiate scene
         this.start();
     }
 

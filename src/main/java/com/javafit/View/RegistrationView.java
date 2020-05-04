@@ -1,20 +1,16 @@
 package com.javafit.View;
 
+//class imports
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-
-import com.javafit.Controller.DashController;
 import com.javafit.Controller.NewUserController;
 
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -31,10 +27,19 @@ import javafx.stage.Window;
 
 public class RegistrationView {
 
+	//class attribute
     private Scene scene;
 
+    /*
+     * Class Constructor creates a registraiton view scene
+     * this scene is contains all the ui elements and action listeners
+     */
     public RegistrationView() {
-        GridPane gP = new GridPane();
+        /*
+         * JAVAFX UI ELEMENTS
+         */
+    	
+    	GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
         gP.setVgap(10);
@@ -161,6 +166,9 @@ public class RegistrationView {
 
        
         
+        /*
+         * JAVAFX ACTION LISTENERS
+         */
         
         loginButton.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) loginButton.getScene().getWindow();
@@ -261,13 +269,16 @@ public class RegistrationView {
             LoginView lV = new LoginView();
         });
 
+        //gets the bootstrapfx css
         this.scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
     }
 
     
     
-    
+    /*
+     * SHOWS A JAVAFX ALERT WITH GIVEN ARGUMENTS
+     */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -277,6 +288,9 @@ public class RegistrationView {
         alert.show();
     }
 
+    /*
+     * GET SCENE METOD to RETURN THE CURRENT SCENE
+     */
     public Scene getScene() {
         return this.scene;
     }

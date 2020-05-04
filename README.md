@@ -88,6 +88,10 @@ JavaFit
 │   README.md
 │   LICENSE    
 │   pom.xml
+|
+└── img/project-snapshots
+|   └─ *.png
+|
 └───src/main/java
 │   │   
 │   │   
@@ -97,19 +101,34 @@ JavaFit
 │   │   │   Register.java
 │   │   |   RegistrationView.java
 |   |   |   NewPassView.java
-|   |   └── ResetPassView.java
+|   |   |   ResetPassView.java
+|   |   |   ReportView.java
+|   |   └── BMICalculatorView.java
 │   |
 |   └─── com.javafit.Model
 |   |   |   Person.java
+|   |   |   Routine.java
 |   |   └── User.java
 |   |  
 |   └───com.javafit.Controller
 |       |   LoginController.java
 |       |   NewUserController.java
+|       |   CustomRoutineController.java
+|       |   SettingsController.java
+|       |   RoutineController.java
+|       |   DashController.java
+|       |   ReportController.java
+|       |   BMICalculatorController.java
 |       |   ResetController.java
 |       └── SendResetController.java
-└───────────────────────────────────   
-
+└───src/main/resources
+|    |
+|    |   dash.fxml
+|    |   routinemaker.fxml
+|    |   routinePane.fxml
+|    |   routines.fxml
+|    └── settings.fxml
+└────────────────────────────────
 ```
 
 
@@ -117,9 +136,23 @@ JavaFit
 
 * GUI Interface
 * Account Login
+    * Account Settings Modification
+* Reporting
+    * Report progresss
+    * New weights
+    * Pie charts
 * Weight Tracking
-* Calorie Trackig
+* Calorie Tracking
+* Personalized Suggestions
+    * Suggested Calories
+    * Suggested Macros
+    * Suggested Routines
 * Exercises
+* Custom Routines
+    * Routine Viewer
+* Cross Platform 
+    * Mac, Windows, Linux
+* BMI Calculator
 
 
 ### Project Showcase

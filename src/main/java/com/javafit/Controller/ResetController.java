@@ -8,9 +8,6 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
-import javafx.scene.control.Alert;
-import javafx.stage.Window;
-
 public class ResetController {
 	
 	// class attributes
