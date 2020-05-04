@@ -12,7 +12,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import org.bson.Document;
 import com.javafit.View.RegistrationView;
@@ -26,16 +25,15 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 public class RoutineController {
-	
-	//class attributes
-    private Scene routineScene;
+
+    //class attributes
+    private final Scene routineScene;
     private String userName;
-    private Stage routineStage;
+    private final Stage routineStage;
     private MongoClient mongoClient;
     private MongoDatabase routinesDB;
     private Document userObject;
-    
-    
+
     /*
      * Class constuctor, takes in a username
      * sets FXML UI elements with proper data.
@@ -46,7 +44,7 @@ public class RoutineController {
         this.routineStage = new Stage();
         this.routineScene = new Scene(loadFXML(), 956, 800);
         this.routineStage.setScene(this.routineScene);
-        
+
         // main pane for routines (scroll pane
         ScrollPane mainPane = (ScrollPane) this.routineScene.lookup("#mainPane");
         this.initializeMongoConnection();
@@ -58,11 +56,11 @@ public class RoutineController {
 
         mainPane.setPadding(new Insets(25, 50, 25, 145));
 
-       // dynamically adds routines to main pane
+        // dynamically adds routines to main pane
         try {
             while (cursor.hasNext()) {
                 Document obj = cursor.tryNext();
-                
+
                 AnchorPane newPane = FXMLLoader.load(RoutineController.class.getResource("/routinePane.fxml"));
                 newPane.setPadding(new Insets(25, 10, 25, 10));
                 Label routineName = (Label) newPane.lookup("#routineName");
@@ -75,26 +73,28 @@ public class RoutineController {
                 JFXCheckBox home = (JFXCheckBox) newPane.lookup("#home");
                 JFXCheckBox gym = (JFXCheckBox) newPane.lookup("#gym");
 
-                if (obj.getBoolean("gainMuscle")) {
-                    muscle.setSelected(true);
-                }
-                if (obj.getBoolean("gainStrength")) {
-                    strength.setSelected(true);
-                }
-                if (obj.getBoolean("loseWeight")) {
-                    weight.setSelected(true);
-                }
-                if (obj.getString("location").strip().equalsIgnoreCase("home")) {
-                    home.setSelected(true);
-                }
-                if (obj.getString("location").strip().equalsIgnoreCase("gym")) {
-                    gym.setSelected(true);
-                }
+                if (obj != null) {
+                    if (obj.getBoolean("gainMuscle")) {
+                        muscle.setSelected(true);
+                    }
+                    if (obj.getBoolean("gainStrength")) {
+                        strength.setSelected(true);
+                    }
+                    if (obj.getBoolean("loseWeight")) {
+                        weight.setSelected(true);
+                    }
+                    if (obj.getString("location").strip().equalsIgnoreCase("home")) {
+                        home.setSelected(true);
+                    }
+                    if (obj.getString("location").strip().equalsIgnoreCase("gym")) {
+                        gym.setSelected(true);
+                    }
 
-                routineName.setText((obj.get("name").toString().toUpperCase()));
-                userNameLabel.setText((String) obj.get("userName"));
-                reps.setText((String) obj.get("reps"));
-                mGroup.setText((String) obj.get("muscleGroup"));
+                    routineName.setText((obj.get("name").toString().toUpperCase()));
+                    userNameLabel.setText((String) obj.get("userName"));
+                    reps.setText((String) obj.get("reps"));
+                    mGroup.setText((String) obj.get("muscleGroup"));
+                }
 
                 gP.add(newPane, 0, rowIndex);
                 rowIndex++;
@@ -116,11 +116,11 @@ public class RoutineController {
             try {
                 DashController dC = new DashController(this.userName);
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
 
-     // action listener for custom routine
+        // action listener for custom routine
         JFXButton customBtn = (JFXButton) this.routineScene.lookup("#customBtn");
         customBtn.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) customBtn.getScene().getWindow();
@@ -129,7 +129,7 @@ public class RoutineController {
             try {
                 CustomRoutineController crC = new CustomRoutineController(this.userName);
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
 
@@ -149,7 +149,7 @@ public class RoutineController {
     /*
      * Closes mongodb connection
      */
-    public void closeMongoConnection() {
+    private void closeMongoConnection() {
         System.out.println("closing mongo client");
         this.mongoClient.close();
         System.out.println("successfully closed mongo connection");

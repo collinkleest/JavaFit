@@ -27,7 +27,7 @@ import javafx.stage.Window;
 
 public class LoginView {
 
-	//class attributes
+    //class attributes
     private Scene loginScene;
 
     //start method to display instantiated object of class
@@ -45,8 +45,8 @@ public class LoginView {
         /*
          * JAVAFX UI ELEMENTS
          */
-    	
-    	GridPane gP = new GridPane();
+
+        GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
         gP.setVgap(10);
@@ -96,7 +96,6 @@ public class LoginView {
         resetPasswordBtn.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(resetPasswordBtn, 0, 4, 2, 1);
 
-        
         /*
          * ACTION EVENTS
          */
@@ -148,7 +147,7 @@ public class LoginView {
                 try {
                     DashController dashC = new DashController(userNameInput.getText());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
             }
         });
