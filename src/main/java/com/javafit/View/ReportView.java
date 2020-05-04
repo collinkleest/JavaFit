@@ -5,6 +5,7 @@ import com.javafit.Controller.DashController;
 import com.javafit.Controller.ReportController;
 import com.mongodb.BasicDBObject;
 import java.io.IOException;
+import static java.lang.Math.abs;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -155,7 +156,7 @@ public class ReportView {
         });
 
         //Weight Lost Label
-        Label weightLost = new Label("Total Weight Lost:");
+        Label weightLost = new Label("Total Weight Lost or Gained:");
         weightLost.getStyleClass().setAll("strong", "lead");
         gP.add(weightLost, 0, 3);
 
@@ -179,7 +180,7 @@ public class ReportView {
         weightToGoDisplay.setEditable(false);
         weightToGoDisplay.setPrefWidth(150);
         if (userObj.get("currentWeight") != null && userObj.get("goal") != null) {
-            weightToGoDisplay.setText((Double.parseDouble(userObj.get("currentWeight").toString()) - Double.parseDouble(userObj.get("goal").toString()) + " lbs"));
+            weightToGoDisplay.setText((abs((Double.parseDouble(userObj.get("currentWeight").toString()) - Double.parseDouble(userObj.get("goal").toString()))) + " lbs"));
         }
 
         //Creating Pie Chart
@@ -188,9 +189,20 @@ public class ReportView {
         double iAmTemporary[] = {0, 1};
 
         if (userObj.get("currentWeight") != null && userObj.get("goal") != null) {
-            double actualValues[] = {Double.parseDouble(userObj.get("weight").toString()) - Double.parseDouble(userObj.get("currentWeight").toString()), Double.parseDouble(userObj.get("currentWeight").toString()) - Double.parseDouble(userObj.get("goal").toString())};
-            for (int i = 0; i < 2; i++) {
-                data[i] = new PieChart.Data(keyTerms[i], actualValues[i]);
+            Double readCurrentWeight = Double.parseDouble(userObj.get("currentWeight").toString());
+            Double readGoal = Double.parseDouble(userObj.get("goal").toString());
+            Double readOldWeight = Double.parseDouble(userObj.get("weight").toString());
+            double actualValues[] = {readOldWeight - readCurrentWeight, readCurrentWeight - readGoal};
+            double gainingWeightValues[] = {abs(readCurrentWeight - readOldWeight), abs(readGoal-readCurrentWeight)};
+            
+            if (readCurrentWeight > readGoal) {
+                for (int i = 0; i < 2; i++) {
+                    data[i] = new PieChart.Data(keyTerms[i], actualValues[i]);
+                }
+            } else {
+                for (int i = 0; i < 2; i++) {
+                    data[i] = new PieChart.Data(keyTerms[i], gainingWeightValues[i]);
+                }
             }
         } else {
             for (int i = 0; i < 2; i++) {
