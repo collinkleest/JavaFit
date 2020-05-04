@@ -1,5 +1,6 @@
 package com.javafit.Controller;
 
+//class imports
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -13,11 +14,16 @@ import com.mongodb.client.MongoDatabase;
 
 public class SendResetController {
 	
+	//class attributes
 	private String passWord;
 	private String userName;
 	private MongoClient mongoClient;
 	private MongoDatabase usersDB;
 	
+	/*
+	 * Class constructor, takes in user password, and username.
+	 * calls generate hash function, and starts a mongo connection.
+	 */
 	public SendResetController(String pWord, String uName) {
 		this.passWord = pWord;
 		this.userName = uName;
@@ -25,18 +31,31 @@ public class SendResetController {
 		this.initializeMongoConnection();
 	}
 	
+	/*
+	 * This method starts an active connection with the MongoDB database.
+	 */
 	private void initializeMongoConnection() {
 		   this.mongoClient = MongoClients.create(
 			    "mongodb+srv://ckleest:ckk@javafit-qy8fa.mongodb.net/test?retryWrites=true&w=majority");
 			this.usersDB = mongoClient.getDatabase("USERS");
 	}
 	
+	/*
+	 * This method simply closes the current mongodb connection. 
+	 */
 	public void closeMongoConnection() {
 		System.out.println("closing mongo client");
 		this.mongoClient.close();
 		System.out.println("successfully closed mongo connection");
 	}
 	
+	/*
+	 * Function to make a password reset query.
+	 * First checks if there is actually a user in the database with the inputed username, if this is false it makes the query to change
+	 * the current users password.
+	 * This functionality is actually in the appliaction in the change user settings controller.
+	 * Function returns true if the users password was successfully changed and returns false if it is not successfully changed. 
+	 */
 	public boolean reset(){
 		FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", this.userName));
 		if (iterable.first()==null) {
@@ -59,6 +78,9 @@ public class SendResetController {
 		}
 	}
 	
+	/*
+	 * This method takes in a password and coverts it to a MD5 hash of the password.
+	 */
 	public void generateHash() {
 		StringBuilder hash = new StringBuilder();
 		try {

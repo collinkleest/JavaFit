@@ -1,6 +1,8 @@
 package com.javafit.View;
 
-import com.javafit.Controller.ResetController;
+/*
+ * Class Imports
+ */
 import com.javafit.Controller.SendResetController;
 
 import javafx.event.ActionEvent;
@@ -20,9 +22,13 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class NewPassView {
+	//class attributes
 	private String userName;
 	private Scene resetScene;
 	
+	/*
+	 * Start method, instatiatiates current scene
+	 */
 	public void start(){
 		Stage primaryStage = new Stage();
 		primaryStage.setScene(this.resetScene);
@@ -30,9 +36,16 @@ public class NewPassView {
 		primaryStage.show();
 	}
 	
+	/*
+	 * Class constructor, createes a view for new password scene
+	 */
 	public NewPassView(String uName) {
 		this.userName = uName;
 		
+		
+		/*
+		 * JAVAFX UI ELEMENTS
+		 */
 		GridPane gP = new GridPane();
 		gP.setAlignment(Pos.CENTER);
 		gP.setHgap(10);
@@ -67,6 +80,9 @@ public class NewPassView {
 		resetBtn.getStyleClass().setAll("strong","lead", "btn-info", "btn-sm");
 		gP.add(resetBtn, 0, 3);
 		
+		/*
+		 * JavaFX event handlers
+		 */
 		resetBtn.setOnAction(new EventHandler<ActionEvent>() {
 	    	@Override
 	    	public void handle(ActionEvent event) {
@@ -104,11 +120,16 @@ public class NewPassView {
 	    	}
 	    });
 	    
+		//grabs bootstrapfx css
 		 resetScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 		
+		 //instantiates current scene
 		this.start();
 	}
 	
+	/*
+	 * Shows alert for given arguments
+	 */
 	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

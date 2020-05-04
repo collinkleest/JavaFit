@@ -1,5 +1,8 @@
 package com.javafit.View;
 
+/*
+ * Class Imports
+ */
 import java.io.IOException;
 
 import com.javafit.Controller.DashController;
@@ -24,8 +27,10 @@ import javafx.stage.Window;
 
 public class LoginView {
 
+	//class attributes
     private Scene loginScene;
 
+    //start method to display instantiated object of class
     private void start() {
         Stage primaryStage = new Stage();
         primaryStage.setScene(this.loginScene);
@@ -33,8 +38,15 @@ public class LoginView {
         primaryStage.show();
     }
 
+    /*
+     * Class Construtor creates all UI elements into a single scene/stage
+     */
     public LoginView() {
-        GridPane gP = new GridPane();
+        /*
+         * JAVAFX UI ELEMENTS
+         */
+    	
+    	GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
         gP.setVgap(10);
@@ -62,7 +74,7 @@ public class LoginView {
 
         Button registerButton = new Button("Register");
         registerButton.setPrefHeight(40);
-        registerButton.setDefaultButton(true);
+        registerButton.setDefaultButton(false);
         registerButton.setPrefWidth(100);
         registerButton.setAlignment(Pos.CENTER);
         registerButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
@@ -78,12 +90,16 @@ public class LoginView {
 
         Button resetPasswordBtn = new Button("Reset Password");
         resetPasswordBtn.setPrefHeight(40);
-        resetPasswordBtn.setDefaultButton(true);
+        resetPasswordBtn.setDefaultButton(false);
         resetPasswordBtn.setPrefWidth(400);
         resetPasswordBtn.setAlignment(Pos.CENTER);
         resetPasswordBtn.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(resetPasswordBtn, 0, 4, 2, 1);
 
+        
+        /*
+         * ACTION EVENTS
+         */
         registerButton.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
@@ -132,19 +148,21 @@ public class LoginView {
                 try {
                     DashController dashC = new DashController(userNameInput.getText());
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-
-                //DashboardView dashboardView = new DashboardView();
             }
         });
 
+        // grab bootstrapfx stylesheet
         loginScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
+        //initiate scene
         this.start();
     }
 
+    /*
+     * Alert method which displays an alert under certain criteria in the method arguments
+     */
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

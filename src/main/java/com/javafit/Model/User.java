@@ -20,7 +20,7 @@ public class User extends Person {
 	private boolean home;
 	private boolean gym;
 	
-	//class constructor
+	//class constructor to instantiate a user object
 	public User(String name, String height, String weight, String dob,
 			String uName, String pWord, boolean muscle, boolean strength,
 			boolean loseWeight, boolean home, boolean gym) {
@@ -34,6 +34,9 @@ public class User extends Person {
 		this.gym = gym;
 	}
 
+	/*
+	 * Below are all getters and setters for the class
+	 */
 	public String getUserName() {
 		return userName;
 	}
@@ -90,6 +93,9 @@ public class User extends Person {
 		this.gym = gym;
 	}
 
+	/*
+	 * to string method for debugging, prints out all attibutes for user object
+	 */
 	@Override
 	public String toString() {
 		return super.toString() + "User [userName=" + userName + ", passWord=" + passWord + ", gainMuscle=" + gainMuscle
