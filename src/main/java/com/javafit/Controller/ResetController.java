@@ -11,8 +11,8 @@ import com.mongodb.client.MongoDatabase;
 public class ResetController {
 	
 	// class attributes
-	private String userName;
-	private String dob;
+	private final String userName;
+	private final String dob;
 	private MongoClient mongoClient;
 	private MongoDatabase usersDB;
 	

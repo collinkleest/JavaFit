@@ -2,12 +2,9 @@ package com.javafit.View;
 
 //class imports
 import javafx.scene.control.TextField;
-
 import com.javafit.Controller.NewUserController;
-
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
-
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -27,7 +24,7 @@ import javafx.stage.Window;
 
 public class RegistrationView {
 
-	//class attribute
+    //class attribute
     private Scene scene;
 
     /*
@@ -38,8 +35,8 @@ public class RegistrationView {
         /*
          * JAVAFX UI ELEMENTS
          */
-    	
-    	GridPane gP = new GridPane();
+
+        GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
         gP.setVgap(10);
@@ -136,7 +133,7 @@ public class RegistrationView {
         gP.add(terms, 0, 10);
 
         ToggleGroup termsGroup = new ToggleGroup();
-     
+
         JFXRadioButton termRadio = new JFXRadioButton("Yes, I accept");
         termRadio.setStyle("-jfx-selected-color: GREEN; -jfx-unselected-color: BLACK;");
         termRadio.setToggleGroup(termsGroup);
@@ -146,7 +143,6 @@ public class RegistrationView {
         termRadio2.setStyle("-jfx-selected-color: RED; -jfx-unselected-color: BLACK;");
         termRadio2.setToggleGroup(termsGroup);
         gP.add(termRadio2, 2, 10);
-        
 
         Button loginButton = new Button("Login");
         loginButton.setPrefHeight(40);
@@ -164,12 +160,9 @@ public class RegistrationView {
         submitButton.getStyleClass().setAll("btn-sm", "btn-info", "lead");
         gP.add(submitButton, 1, 11);
 
-       
-        
         /*
          * JAVAFX ACTION LISTENERS
          */
-        
         loginButton.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.close();
@@ -202,7 +195,7 @@ public class RegistrationView {
                         "Form Error!", "Passwords don't match");
                 return;
             }
-            
+
             if (weightInput.getText().isEmpty()) {
                 showAlert(Alert.AlertType.ERROR, gP.getScene().getWindow(),
                         "Form Error!", "Please enter a weight");
@@ -243,14 +236,14 @@ public class RegistrationView {
                         "Form Error!", "You must accept the terms to create an account!");
                 return;
             }
-            
+
             String height = feetInput.getText() + "." + inchesInput.getText();
             String dob = datePicker.getValue().toString();
             NewUserController tempUser = new NewUserController(
                     nameInput.getText().strip(), height, weightInput.getText().strip(), dob,
                     userNameInput.getText().strip(), pwBox.getText().strip(), gainMuscle.isSelected(), gainStrength.isSelected(),
                     loseWeight.isSelected(), home.isSelected(), gym.isSelected());
-            
+
             if (tempUser.checkUserExistence()) {
                 showAlert(Alert.AlertType.ERROR, gP.getScene().getWindow(),
                         "Form Error!", "User already exists!");
@@ -258,7 +251,7 @@ public class RegistrationView {
             } else {
                 tempUser.insertUser();
             }
-            
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("User Created Confirmation");
             alert.setContentText("Registration Succesful! " + "Welcome to JavaFit " + nameInput.getText());
@@ -274,8 +267,6 @@ public class RegistrationView {
 
     }
 
-    
-    
     /*
      * SHOWS A JAVAFX ALERT WITH GIVEN ARGUMENTS
      */

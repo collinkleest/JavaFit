@@ -30,14 +30,14 @@ public class DashController {
 	//class attributes includes FXML elements
     private String userName;
     private String weightString;
-    private Stage dashStage;
-    private Scene dashScene;
+    private final Stage dashStage;
+    private final Scene dashScene;
     private MongoClient mongoClient;
     private MongoDatabase usersDB;
     private Document userObj;
     private HashMap<String, Double> macros;
-    private Double totalCalories;
-    private Integer weightNum;
+    private final Double totalCalories;
+    private final Integer weightNum;
 
     /*
      * Class constructor, see individual comments in constructor for more details.
