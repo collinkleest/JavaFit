@@ -124,8 +124,19 @@ public class User extends Person {
 
     /*
      * Generates JSON Object for User
+     * From creators of the simple-json jar we used:
+     *
+     * NOTE:
+     * With respect to the screen output shown on this page, ignore the possibility of output or lack of
+     * output similar to the following:
+     * Note: Code99.java uses unchecked or unsafe operations.
+     * Note: Recompile with -Xlint:unchecked for details.
+     *
+     * Page 58 of the following simple-json documentation
+     * https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwi4wYOjkZnpAhVpgXIEHYb8BUQQFjAAegQIARAB&url=https%3A%2F%2Fcnx.org%2Fexports%2Fe6c441f6-0a46-44c6-9f3c-b48759faac95%4014.1.pdf%2Fthe-json-simple-java-library-14.1.pdf&usg=AOvVaw0dJPP2N-8h8uH5K4WZSTYl
+     * 
      */
-    public JSONObject genertateJSON() {
+    public JSONObject generateJSON() {
         JSONObject user = new JSONObject();
         user.put("name", super.getName());
         user.put("username", this.userName);

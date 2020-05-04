@@ -29,7 +29,8 @@ Install dependencies with maven.
 ```bash
 $ mvn clean install
 ```
-Now run the applicaiton
+Now run the application
+(There will be several warnings due to Xlint:unchecked in the pom.xml; see bottom of README.md for details)
 ```bash
 $ mvn clean javafx:run
 ```
@@ -219,3 +220,17 @@ JavaFit
         - [x] Password Hashing
         - [x] JSON
     - [x] Reset password functionality
+
+### Why are there compilation warnings?
+The simple-json jar we have utilized for this project has caused it and there is no workaround.
+In the documentation for the jar (linked below) it says:
+
+NOTE:
+With respect to the screen output shown on this page, ignore the possibility of output or lack of
+output similar to the following:
+Note: Code99.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+[Link to Documentation](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwi4wYOjkZnpAhVpgXIEHYb8BUQQFjAAegQIARAB&url=https%3A%2F%2Fcnx.org%2Fexports%2Fe6c441f6-0a46-44c6-9f3c-b48759faac95%4014.1.pdf%2Fthe-json-simple-java-library-14.1.pdf&usg=AOvVaw0dJPP2N-8h8uH5K4WZSTYl)
+
+We have left the Xlint:unchecked compiler warning in our pom.xml so you are able to see this is coming from the simple-json jar file's ".put" commands.
