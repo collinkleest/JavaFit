@@ -13,7 +13,6 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,8 +24,8 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class CustomRoutineController {
-	
-	//class attributes
+
+    //class attributes
     private MongoClient mongoClient;
     private MongoDatabase usersDB;
     private String userName;
@@ -34,7 +33,6 @@ public class CustomRoutineController {
     private Scene cRoutineScene;
     private Routine tempRoutine;
 
-    
     /*
      * Class constructor, takes username as param
      * Grabs all FXML Elements from resource folder.
@@ -67,7 +65,7 @@ public class CustomRoutineController {
                 RoutineController rV = new RoutineController(this.userName);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
 
@@ -77,7 +75,7 @@ public class CustomRoutineController {
             try {
                 DashController dC = new DashController(this.userName);
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         });
 
@@ -144,7 +142,7 @@ public class CustomRoutineController {
      * Private method that shows displays an alert based on alert type(enum), window owner, title
      * and a desired message.
      */
-    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+    private void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);

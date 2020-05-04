@@ -15,7 +15,7 @@ public class NewUserController {
 	// class attributes
 	private MongoClient mongoClient;
 	private MongoDatabase usersDB;
-	private User tempUser;
+	private final User tempUser;
 	
 	/*
 	 * Constructor that takes in all the attributes for a user and creates a temporary user.

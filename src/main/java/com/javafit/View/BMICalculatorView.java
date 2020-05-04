@@ -31,7 +31,7 @@ import org.bson.Document;
  */
 public class BMICalculatorView {
 
-	//class attributes
+    //class attributes
     private final Scene scene;
     private MongoClient mongoClient;
     private MongoDatabase usersDB;
@@ -52,6 +52,7 @@ public class BMICalculatorView {
 
     /**
      * Constructor
+     *
      * @param userName current username
      */
     public BMICalculatorView(String userName) {
@@ -66,7 +67,6 @@ public class BMICalculatorView {
         this.scene = new Scene(gP, 300, 300);
         this.queryWeight(userName);
         this.queryHeight(userName);
-        
 
         //Initial Style Setup
         Text scenetitle = new Text("BMI Calculator");
@@ -104,7 +104,7 @@ public class BMICalculatorView {
             try {
                 Double.parseDouble(heightDisplay.getText());
                 Double.parseDouble(weightDisplay.getText());
-                
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Your BMI");
                 alert.setHeaderText("Your BMI is:");
@@ -114,7 +114,7 @@ public class BMICalculatorView {
                 alert.setContentText(calculatedBMI + "");
                 alert.initOwner(gP.getScene().getWindow());
                 alert.show();
-            } catch(Exception e) {
+            } catch (NumberFormatException e) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Invalid");
                 alert.setHeaderText("Invalid");
@@ -156,17 +156,17 @@ public class BMICalculatorView {
      */
     private void queryWeight(String userName) {
         FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", "Boyce"));
-        
+
         this.userObj = iterable.first();
         this.weightString = "" + this.userObj.get("weight");
     }
-    
+
     /*
      * Query height from mongo database
      */
     private void queryHeight(String userName) {
         FindIterable<Document> iterable = this.usersDB.getCollection("USERS").find(new Document("username", "Boyce"));
-        
+
         this.userObj = iterable.first();
         this.heightString = "" + this.userObj.get("height");
     }

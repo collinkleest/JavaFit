@@ -2,7 +2,6 @@ package com.javafit.View;
 
 //class imports 
 import com.javafit.Controller.ResetController;
-
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -21,7 +20,7 @@ import javafx.stage.Window;
 
 public class ResetPassView {
 
-	//class attibute 
+    //class attibute 
     private Scene resetScene;
 
     /*
@@ -38,11 +37,11 @@ public class ResetPassView {
      * Class constructor, creates the UI Scene for the reset password view
      */
     public ResetPassView() {
-       
-    	/*
+
+        /*
     	 * JAVAFX UI ELEMENTS
-    	 */
-    	GridPane gP = new GridPane();
+         */
+        GridPane gP = new GridPane();
         gP.setAlignment(Pos.CENTER);
         gP.setHgap(10);
         gP.setVgap(10);
@@ -75,7 +74,7 @@ public class ResetPassView {
         resetButton.setAlignment(Pos.CENTER);
         resetButton.getStyleClass().setAll("strong", "lead", "btn-info", "btn-sm");
         gP.add(resetButton, 0, 3);
-        
+
         Button goBackButton = new Button("Go Back");
         goBackButton.setPrefHeight(40);
         goBackButton.setDefaultButton(false);
@@ -84,7 +83,6 @@ public class ResetPassView {
         goBackButton.getStyleClass().setAll("strong", "lead", "btn-info", "btn-sm");
         gP.add(goBackButton, 1, 3);
 
-        
         /*
          * JAVAFX EVENT LISTENERS
          */
@@ -99,7 +97,7 @@ public class ResetPassView {
                         "Form Error!", "Cannot verify you!");
                 return;
             }
-            
+
             ResetController rC = new ResetController(userNameInput.getText().strip(), datePicker.getValue().toString());
             if (!rC.validate()) {
                 showAlert(Alert.AlertType.ERROR, gP.getScene().getWindow(),
@@ -111,11 +109,11 @@ public class ResetPassView {
                 NewPassView npV = new NewPassView(userNameInput.getText().strip());
             }
         });
-        
+
         goBackButton.setOnAction((ActionEvent event) -> {
             Stage stage = (Stage) goBackButton.getScene().getWindow();
             stage.close();
-            
+
             LoginView loginView = new LoginView();
         });
 
